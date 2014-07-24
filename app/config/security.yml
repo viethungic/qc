@@ -1,12 +1,36 @@
 security:
+    encoders:
+        NHK\SecurityBundle\Entity\User:
+            algorithm: md5
+    
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+        
     providers:
-        in_memory:
-            memory: ~
+        administrators:
+            entity: { class: NHKSecurityBundle:User}
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        default:
+        secured_area:
+            pattern: /.*
+            provider: administrators
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path: logout                
+                target: /
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+            
+    access_control:
+        - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN } 
+        
+    acl:
+        connection: default                      

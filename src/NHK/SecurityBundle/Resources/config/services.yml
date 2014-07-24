@@ -1,0 +1,7 @@
+parameters:
+#    nhk_security.example.class: NHK\SecurityBundle\Example
+
+services:
+#    nhk_security.example:
+#        class: %nhk_security.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
