@@ -21,9 +21,10 @@ class DefaultController extends Controller implements DomainObjectInterface
         /** Get Encoder */
         $encoder = new MessageDigestPasswordEncoder('md5',false);
         $em = $this->getDoctrine()->getManager();
+        $factory = $this->get('security.encoder_factory');
         /**  
         
-        $factory = $this->get('security.encoder_factory');
+        
         $user = new \NHK\SecurityBundle\Entity\User(); // $em->getRepository('NHKSecurityBundle:User')->find(1);
         $encoder = $factory->getEncoder($user);
         $password = $encoder->encodePassword('anhyeuem', $user->getSalt());
@@ -33,9 +34,18 @@ class DefaultController extends Controller implements DomainObjectInterface
         $em->persist($user);
         $em->flush();
         */
+        /*
         $classMetadata = new ClassMetadata("NHK\SecurityBundle\Entity\User");
         $userProvider = new \NHK\SecurityBundle\Entity\UserRepository($em,$classMetadata);
         $newUser = $userProvider->createUser();
+        $encoder = $factory->getEncoder($newUser);
+        $password = $encoder->encodePassword('123', $newUser->getSalt());
+        $newUser->setPassword($password);
+        $newUser->setUsername('admin');
+        $newUser->setEmail('admin@gmail.com');
+        $em->persist($newUser);
+        $em->flush();
+        */
         //var_dump($userProvider);
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('Unable to access this page!');
