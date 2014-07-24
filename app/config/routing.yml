@@ -1,0 +1,4 @@
+nhk_qc:
+    resource: "@NHKQcBundle/Resources/config/routing.yml"
+    prefix:   /
+
