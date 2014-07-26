@@ -98,7 +98,7 @@ class DefaultController extends Controller implements DomainObjectInterface
         }
         $aclProvider->updateAcl($acl);
         
-        var_dump($securityContext->isGranted('VIEW',__CLASS__));
+        //var_dump($securityContext->isGranted('VIEW',__CLASS__));
         return $this->render('NHKQcBundle:Default:index.html.php', array('name' => $name));
     }
     
