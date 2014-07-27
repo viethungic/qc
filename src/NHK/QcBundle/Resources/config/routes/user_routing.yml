@@ -1,0 +1,3 @@
+nhk_qc_user_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:User:index }
