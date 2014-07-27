@@ -24,6 +24,15 @@ $kernel->loadClassCache();
 // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 //Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
+/** Define some variables */
+
+$baseUrl = $request->getScheme() . '://' .$request->getHttpHost() . $request->getBasePath();
+$baseDir = __DIR__;
+//define('BASE_URL',$baseUrl."/web");
+define('BASE_URL',$baseUrl);
+define('BASE_DIR',$baseDir);
+define('BASE_TITLE','SELL PHONE, TABLET ONLINE');
+
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);

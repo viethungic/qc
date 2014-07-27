@@ -16,7 +16,7 @@
 
 <head>
 <meta charset="utf-8"/>
-<title>Metronic | Page Layouts - Horizontal Mega Menu 1</title>
+<title><?php $view['slots']->output('title','| Home Page'); ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="" name="description"/>
@@ -36,7 +36,17 @@
 <link href="bundles/qc/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="bundles/qc/assets/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
+
+<!-- PAGE LEVEL STYLES -->
+<?php $view['slots']->output('css',false) ?>
+<!-- END PAGE LEVEL STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+<!-- BASE URL -->
+
+<script type="text/javascript">
+	var BASE_URL = '<?php echo BASE_URL; ?>';
+	var WEB_SOURCE = BASE_URL+'/bundles/qc';
+</script>
 </head>
 
 <!-- Head END -->
