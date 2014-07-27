@@ -20,6 +20,12 @@
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/bundles/qc/assets/plugins/data-tables/DT_bootstrap.js"></script>
 
 <script>
+var htmlRoles = '<select multiple class="form-control">';
+    <?php foreach($userRoles as $ur):?>
+    htmlRoles =htmlRoles+ '<option value="<?php echo $ur->getId()?>"><?php echo $ur->getName()?></option>';
+    <?php endforeach;?>
+    htmlRoles =htmlRoles+ '</select>';
+    //console.log(htmlRoles);
 var TableEditable = function () {
 
     var handleTable = function () {
@@ -38,23 +44,62 @@ var TableEditable = function () {
         function editRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
+            //console.log(aData);
             jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
-            jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
-            jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-            jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[2].innerHTML = aData[2];
+            jqTds[3].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[4].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            $('select').select2().trigger('update');
         }
 
         function saveRow(oTable, nRow) {
+            var aData = oTable.fnGetData(nRow);
             var jqInputs = $('input', nRow);
+            var jqSelect = $('select',nRow);
+            console.log(jqSelect[0]);
+            var userRoles = new Array();
+            var i=0;
+            for (x=0;x<jqSelect[0].length;x++)
+             {
+                if(jqSelect[0][x].selected)
+                {
+                    userRoles[i] =jqSelect[0][x].value;
+                    i++;
+                }
+             }
+            
+            console.log(userRoles);
+            if(aData[5]=='add'){
+                $.ajax({
+                    type: "POST",
+                    url: '<?php echo $view['router']->generate('nhk_qc_user_add',array(),true);?>',
+                    data: { 
+                        username:jqInputs[0].value , 
+                        roles:JSON.stringify(userRoles) 
+                    },
+                    //dataType: "html",
+                    success: function (res) {
+                        App.stopPageLoading();
+                        
+                        //App.initAjax(); // initialize core stuff
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        
+                        App.stopPageLoading();
+                    }
+                });
+            }
+            
             oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-            oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+            oTable.fnUpdate('<select multiple="" class="form-control">'+jqSelect[0].innerHTML+'</select>', nRow, 2, false);
+            
+            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 3, false);
+            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 4, false);
             oTable.fnDraw();
+            $('select').select2().trigger('update');
+            
         }
 
         function cancelEditRow(oTable, nRow) {
@@ -120,7 +165,7 @@ var TableEditable = function () {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '']);
+            var aiNew = oTable.fnAddData(['', '', htmlRoles, '', '','add']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -166,7 +211,7 @@ var TableEditable = function () {
                 /* Editing this row and want to save it */
                 saveRow(oTable, nEditing);
                 nEditing = null;
-                alert("Updated! Do not forget to do some ajax to sync with backend :)");
+                //alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
                 /* No edit in progress - let's start one */
                 editRow(oTable, nRow);
@@ -253,11 +298,9 @@ var TableEditable = function () {
 									 Full Name
 								</th>
 								<th>
-									 Points
+									 Role
 								</th>
-								<th>
-									 Notes
-								</th>
+								
 								<th>
 									 Edit
 								</th>
@@ -267,18 +310,38 @@ var TableEditable = function () {
 							</tr>
 							</thead>
 							<tbody>
+                            <?php foreach($userList as $ul):
+                                $ulRoles = $ul->getRoles();
+                                $ulRoleArray = array();
+                                foreach($ulRoles as $r){
+                                    $ulRoleArray[count($ulRoleArray)] = $r->getId();
+                                }
+                                
+                            ?>
 							<tr>
 								<td>
-									 alex
+									 <?php echo $ul->getUsername();?>
 								</td>
 								<td>
-									 Alex Nilson
+									 
 								</td>
-								<td>
-									 1234
-								</td>
+								
 								<td class="center">
-									 power user
+									 <select class="select2me form-control" multiple="">
+                                     <?php 
+                                     foreach($userRoles as $ur):
+                                        if(in_array($ur->getId(),$ulRoleArray)):
+                                     ?>
+                                        <option selected="" value="<?php echo $ur->getId()?>"><?php echo $ur->getName(); ?></option>
+                                     <?php 
+                                        else:
+                                     ?>
+                                        <option value="<?php echo $ur->getId()?>"><?php echo $ur->getName(); ?></option>
+                                    
+                                     <?php 
+                                        endif;
+                                     endforeach;?>
+                                     </select>
 								</td>
 								<td>
 									<a class="edit" href="javascript:;">
@@ -291,126 +354,8 @@ var TableEditable = function () {
 									</a>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									 lisa
-								</td>
-								<td>
-									 Lisa Wong
-								</td>
-								<td>
-									 434
-								</td>
-								<td class="center">
-									 new user
-								</td>
-								<td>
-									<a class="edit" href="javascript:;">
-										 Edit
-									</a>
-								</td>
-								<td>
-									<a class="delete" href="javascript:;">
-										 Delete
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									 nick12
-								</td>
-								<td>
-									 Nick Roberts
-								</td>
-								<td>
-									 232
-								</td>
-								<td class="center">
-									 power user
-								</td>
-								<td>
-									<a class="edit" href="javascript:;">
-										 Edit
-									</a>
-								</td>
-								<td>
-									<a class="delete" href="javascript:;">
-										 Delete
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									 goldweb
-								</td>
-								<td>
-									 Sergio Jackson
-								</td>
-								<td>
-									 132
-								</td>
-								<td class="center">
-									 elite user
-								</td>
-								<td>
-									<a class="edit" href="javascript:;">
-										 Edit
-									</a>
-								</td>
-								<td>
-									<a class="delete" href="javascript:;">
-										 Delete
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									 webriver
-								</td>
-								<td>
-									 Antonio Sanches
-								</td>
-								<td>
-									 462
-								</td>
-								<td class="center">
-									 new user
-								</td>
-								<td>
-									<a class="edit" href="javascript:;">
-										 Edit
-									</a>
-								</td>
-								<td>
-									<a class="delete" href="javascript:;">
-										 Delete
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									 gist124
-								</td>
-								<td>
-									 Nick Roberts
-								</td>
-								<td>
-									 62
-								</td>
-								<td class="center">
-									 new user
-								</td>
-								<td>
-									<a class="edit" href="javascript:;">
-										 Edit
-									</a>
-								</td>
-								<td>
-									<a class="delete" href="javascript:;">
-										 Delete
-									</a>
-								</td>
-							</tr>
+                            <?php endforeach;?>
+						
 							</tbody>
 							</table>
 						</div>
