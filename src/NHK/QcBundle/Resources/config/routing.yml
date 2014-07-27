@@ -1,3 +1,7 @@
 nhk_qc_homepage:
     path:     /
     defaults: { _controller: NHKQcBundle:Default:index }
+    
+nhk_qc_user:
+    resource: "@NHKQcBundle/Resources/config/routes/user_routing.yml"
+    prefix:   /user    

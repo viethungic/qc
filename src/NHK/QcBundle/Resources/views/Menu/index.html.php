@@ -380,6 +380,6 @@
 		<!-- END HORIZANTAL MENU -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<img src="bundles/qc/assets/img/menu-toggler.png" alt=""/>
+			<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/menu-toggler.png" alt=""/>
 		</a>
 		<!-- END RESPONSIVE MENU TOGGLER -->

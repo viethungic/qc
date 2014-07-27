@@ -31,7 +31,7 @@ $baseDir = __DIR__;
 //define('BASE_URL',$baseUrl."/web");
 define('BASE_URL',$baseUrl);
 define('BASE_DIR',$baseDir);
-define('BASE_TITLE','SELL PHONE, TABLET ONLINE');
+define('BASE_TITLE','QC');
 
 $response = $kernel->handle($request);
 $response->send();

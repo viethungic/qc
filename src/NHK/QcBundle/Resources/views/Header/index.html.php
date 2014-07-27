@@ -4,7 +4,7 @@
 	<div class="header-inner">
 		<!-- BEGIN LOGO -->
 		<a class="navbar-brand" href="index.html">
-			<img src="bundles/qc/assets/img/logo.png" alt="logo" class="img-responsive"/>
+			<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/logo.png" alt="logo" class="img-responsive"/>
 		</a>
 		<!-- END LOGO -->
 		<?php
@@ -163,7 +163,7 @@
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="./bundles/qc/assets/img/avatar2.jpg" alt=""/>
+										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar2.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -181,7 +181,7 @@
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="./bundles/qc/assets/img/avatar3.jpg" alt=""/>
+										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar3.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -199,7 +199,7 @@
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="./bundles/qc/assets/img/avatar1.jpg" alt=""/>
+										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar1.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -217,7 +217,7 @@
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="./bundles/qc/assets/img/avatar2.jpg" alt=""/>
+										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar2.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -235,7 +235,7 @@
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="./bundles/qc/assets/img/avatar3.jpg" alt=""/>
+										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar3.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -422,7 +422,7 @@
 			<!-- BEGIN USER LOGIN DROPDOWN -->
 			<li class="dropdown user">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" src="bundles/qc/assets/img/avatar1_small.jpg"/>
+					<img alt="" src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar1_small.jpg"/>
 					<span class="username hidden-1024">
 						 Bob Nilson
 					</span>
