@@ -4,4 +4,8 @@ nhk_qc_homepage:
     
 nhk_qc_user:
     resource: "@NHKQcBundle/Resources/config/routes/user_routing.yml"
-    prefix:   /user    
+    prefix:   /user
+
+nhk_qc_setup_data:
+    resource: "@NHKQcBundle/Resources/config/routes/setup_data_routing.yml"
+    prefix:   /set-up-data
