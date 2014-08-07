@@ -1,0 +1,7 @@
+nhk_qc_set_up_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:SetupData:index }
+
+nhk_qc_set_up_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:SetupData:add }
