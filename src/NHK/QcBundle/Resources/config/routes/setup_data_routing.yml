@@ -5,3 +5,15 @@ nhk_qc_set_up_index:
 nhk_qc_set_up_add:
     path:     /add
     defaults: { _controller: NHKQcBundle:SetupData:add }
+
+nhk_qc_set_up_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:SetupData:edit }
+
+nhk_qc_set_up_edit_qc:
+    path:     /edit-qc
+    defaults: { _controller: NHKQcBundle:SetupData:editqc }
+
+nhk_qc_set_up_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:SetupData:delete }
