@@ -20,7 +20,7 @@ class SetupDataController extends Controller implements DomainObjectInterface
     public function indexAction(){
         $model = new SetupDataModel($this->getDoctrine()->getManager());
         $arrayReturn = array('shapes'=>$model->getAll());
-        return $this->render('NHKQcBundle:SetupData:index.html.php',$arrayReturn);
+        return $this->render('NHKQcBundle:SetupData:setupdata.html.php',$arrayReturn);
     }
 
     public function addAction(){

@@ -1,0 +1,15 @@
+nhk_qc_machine_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Machine:index }
+
+nhk_qc_machine_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:Machine:add }
+
+nhk_qc_machine_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Machine:edit }
+
+nhk_qc_machine_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:Machine:delete }
