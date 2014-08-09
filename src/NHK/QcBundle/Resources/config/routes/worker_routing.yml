@@ -1,0 +1,15 @@
+nhk_qc_worker_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Worker:index }
+
+nhk_qc_worker_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:Worker:add }
+
+nhk_qc_worker_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Worker:edit }
+
+nhk_qc_worker_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:Worker:delete }

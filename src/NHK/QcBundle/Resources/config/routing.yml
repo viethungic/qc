@@ -17,3 +17,7 @@ nhk_qc_machine:
 nhk_qc_order:
     resource: "@NHKQcBundle/Resources/config/routes/order_routing.yml"
     prefix:   /order
+
+nhk_qc_worker:
+    resource: "@NHKQcBundle/Resources/config/routes/worker_routing.yml"
+    prefix:   /worker
