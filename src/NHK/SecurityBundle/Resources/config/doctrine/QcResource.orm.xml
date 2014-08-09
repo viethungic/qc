@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="NHK\SecurityBundle\Entity\QcResource" table="qc_resource">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="controller" type="string" column="controller" length="255" nullable="true"/>
+    <field name="controllerName" type="string" column="controller_name" length="255" nullable="true"/>
+    <field name="route" type="string" column="route" length="255" nullable="true"/>
+    <field name="routeName" type="string" column="route_name" length="255" nullable="true"/>
+    <field name="parentId" type="integer" column="parent_id" nullable="false"/>
+    <field name="level" type="integer" column="level" nullable="false"/>
+    <field name="status" type="boolean" column="status" nullable="false"/>
+  </entity>
+</doctrine-mapping>

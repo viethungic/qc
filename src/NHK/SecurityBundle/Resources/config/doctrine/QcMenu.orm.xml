@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="NHK\SecurityBundle\Entity\QcMenu" table="qc_menu">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="parentId" type="integer" column="parent_id" nullable="true"/>
+    <field name="menuName" type="string" column="menu_name" length="255" nullable="true"/>
+    <field name="menuRoute" type="string" column="menu_route" length="255" nullable="true"/>
+  </entity>
+</doctrine-mapping>

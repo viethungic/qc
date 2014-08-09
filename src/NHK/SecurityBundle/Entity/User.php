@@ -60,7 +60,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @ORM\Column(name="expired_at", type="datetime")
      */
-    protected $expiresAt;
+    protected $expiredAt;
     
     /**
      * @ORM\Column(name="last_login", type="datetime")
@@ -77,7 +77,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @ORM\Column(name="password_request_at", type="datetime")
      */
-    protected $passwordRequestedAt;
+    protected $passwordRequestAt;
     
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
@@ -349,7 +349,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @param \DateTime $expiresAt
      * @return User
      */
-    public function setExpiresAt($expiresAt)
+    public function setExpiredAt($expiresAt)
     {
         $this->expiresAt = $expiresAt;
 
@@ -361,7 +361,7 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @return \DateTime 
      */
-    public function getExpiresAt()
+    public function getExpiredAt()
     {
         return $this->expiresAt;
     }
@@ -415,12 +415,12 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Set passwordRequestedAt
      *
-     * @param \DateTime $passwordRequestedAt
+     * @param \DateTime $passwordRequestAt
      * @return User
      */
-    public function setPasswordRequestedAt($passwordRequestedAt)
+    public function setPasswordRequestAt($passwordRequestAt)
     {
-        $this->passwordRequestedAt = $passwordRequestedAt;
+        $this->passwordRequestedAt = $passwordRequestAt;
 
         return $this;
     }
@@ -430,7 +430,7 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @return \DateTime 
      */
-    public function getPasswordRequestedAt()
+    public function getPasswordRequestAt()
     {
         return $this->passwordRequestedAt;
     }

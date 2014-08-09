@@ -9,11 +9,10 @@
 		<!-- END LOGO -->
 		<?php
 
-        /** Menu */
-        $request = $app->getRequest();
+        
         echo $view['actions']->render(
     		new ControllerReference(
-    			'NHKQcBundle:Menu:index', array ('request' => $request)
+    			'NHKQcBundle:Menu:index', array ('routeName'=>$routeName)
     		)
     	);
         ?>

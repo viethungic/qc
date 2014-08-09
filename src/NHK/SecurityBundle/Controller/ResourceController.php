@@ -9,8 +9,11 @@ class ResourceController extends Controller
     public function indexAction()
     {
         $routes = $this->getAllRouting();
-        var_dump($routes);
-        $arrayReturn = array();
+        $this->saveRoutes();
+        $resources = $this->getDoctrine()->getManager()->getRepository('NHKSecurityBundle:QcResource')->findAll();
+        $arrayReturn = array(
+            'resources' => $resources
+        );
         return $this->render('NHKSecurityBundle:Resource:index.html.php', $arrayReturn);
     }
     
@@ -41,5 +44,37 @@ class ResourceController extends Controller
             }
         }
         return $routes;
+    }
+    
+    public function saveRoutes(){
+        $em = $this->getDoctrine()->getManager();
+        $allRoutes = $this->getAllRouting();
+        foreach($allRoutes as $controller => $routes){
+            $parentId = 0;
+            foreach($routes as $route){
+                $resource = $em->getRepository('NHKSecurityBundle:QcResource')->findOneBy(array('controller'=>$controller,'route'=>$route));
+                if($resource != NULL){/** Da co */
+                
+                }else{
+                    if($parentId==0){
+                        $level = 0;
+                    }else{
+                        $level = 1;
+                    }
+                    $resource = new \NHK\SecurityBundle\Entity\QcResource();
+                    $resource->setController($controller);
+                    $resource->setRoute($route);
+                    $resource->setControllerName($controller);
+                    $resource->setRouteName($route);
+                    $resource->setParentId($parentId);
+                    $resource->setStatus(0);
+                    $resource->setLevel($level);
+                    $em->persist($resource);
+                    $em->flush();
+                    $parentId = $resource->getId();
+                }    
+            }  
+        }
+       
     }
 }

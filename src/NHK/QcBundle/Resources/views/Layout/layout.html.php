@@ -56,24 +56,24 @@
 <body class="page-header-fixed page-full-width">
 <?php
 
-//    /** Header */
-//
+    /** Header */
+
 $request = $app->getRequest();
-//
-//    echo $view['actions']->render(
-//
-//		new ControllerReference(
-//
-//			'NHKQcBundle:Header:index', array ('request' => $request)
-//
-//		)
-//
-//	);
-//
-//    /** Main */
-//        echo '<!-- END HEADER -->
-//                <div class="clearfix">
-//                </div>';
+$routeName = $request->get('_route');
+    echo $view['actions']->render(
+
+		new ControllerReference(
+
+			'NHKQcBundle:Header:index', array ('routeName' => $routeName)
+
+		)
+
+	);
+
+    /** Main */
+        echo '<!-- END HEADER -->
+                <div class="clearfix">
+                </div>';
      ?>
   
 <div class="page-container">
