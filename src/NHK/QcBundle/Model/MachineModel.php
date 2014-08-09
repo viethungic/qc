@@ -17,7 +17,31 @@ class MachineModel
         return $rs;
     }
 
-    public function addShape($array){
+    public function getById($id){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = "SELECT * FROM qc_machine WHERE id = $id AND delif = 0";
+        $rs=$cn->fetchAll($sql);
+        return $rs;
+    }
+
+    public function getBySN($machineserialno){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = "SELECT * FROM qc_machine WHERE machineserialno = '$machineserialno' AND delif = 0";
+        $rs=$cn->fetchAll($sql);
+        return $rs;
+    }
+
+    public function getBySNAndDiffId($machineserialno, $id){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = "SELECT * FROM qc_machine WHERE machineserialno = '$machineserialno' AND id <> $id AND delif = 0";
+        $rs=$cn->fetchAll($sql);
+        return $rs;
+    }
+
+    public function add($array){
         $em = $this->_em;
         $cn = $em->getConnection();
         $cn->insert('qc_machine',
@@ -29,7 +53,7 @@ class MachineModel
             ));
     }
 
-    public function editShape($array){
+    public function edit($array){
         $em = $this->_em;
         $cn = $em->getConnection();
         $sql = " UPDATE qc_machine T
@@ -41,7 +65,7 @@ class MachineModel
         $cn->executeQuery($sql);
     }
 
-    public function deleteShape($array){
+    public function delete($array){
         $em = $this->_em;
         $cn = $em->getConnection();
         $sql = " UPDATE qc_machine T
