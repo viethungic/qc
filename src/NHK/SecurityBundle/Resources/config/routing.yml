@@ -1,3 +1,7 @@
 nhk_security_homepage:
     path:     /hello/{name}
     defaults: { _controller: NHKSecurityBundle:Default:index }
+    
+nhk_security_resource:
+    path: /resource
+    defaults: { _controller: NHKSecurityBundle:Resource:index }

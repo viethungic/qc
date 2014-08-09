@@ -12,4 +12,8 @@ logout:
 nhk_qc:
     resource: "@NHKQcBundle/Resources/config/routing.yml"
     prefix:   /
+    
+nhk_security:
+    resource: "@NHKSecurityBundle/Resources/config/routing.yml"
+    prefix:   /    
 
