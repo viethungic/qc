@@ -13,3 +13,7 @@ nhk_qc_setup_data:
 nhk_qc_machine:
     resource: "@NHKQcBundle/Resources/config/routes/machine_routing.yml"
     prefix:   /machine
+
+nhk_qc_order:
+    resource: "@NHKQcBundle/Resources/config/routes/order_routing.yml"
+    prefix:   /order

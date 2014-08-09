@@ -1,0 +1,15 @@
+nhk_qc_order_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Order:index }
+
+nhk_qc_order_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:Order:add }
+
+nhk_qc_order_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Order:edit }
+
+nhk_qc_order_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:Order:delete }
