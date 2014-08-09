@@ -25,18 +25,18 @@ class WorkerModel
         return $rs;
     }
 
-    public function getBySN($workerserialno){
+    public function getBySN($workerno){
         $em = $this->_em;
         $cn = $em->getConnection();
-        $sql = "SELECT * FROM qc_worker WHERE workerserialno = '$workerserialno' AND delif = 0";
+        $sql = "SELECT * FROM qc_worker WHERE workerno = '$workerno' AND delif = 0";
         $rs=$cn->fetchAll($sql);
         return $rs;
     }
 
-    public function getBySNAndDiffId($workerserialno, $id){
+    public function getBySNAndDiffId($workerno, $id){
         $em = $this->_em;
         $cn = $em->getConnection();
-        $sql = "SELECT * FROM qc_worker WHERE workerserialno = '$workerserialno' AND id <> $id AND delif = 0";
+        $sql = "SELECT * FROM qc_worker WHERE workerno = '$workerno' AND id <> $id AND delif = 0";
         $rs=$cn->fetchAll($sql);
         return $rs;
     }

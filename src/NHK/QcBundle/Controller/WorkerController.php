@@ -26,9 +26,10 @@ class WorkerController extends Controller implements DomainObjectInterface
 
     public function addAction(){
         $model = new WorkerModel($this->getDoctrine()->getManager());
-        $array['machineserialno'] = $this->getRequest()->request->get('machineserialno');
-        $array['manufacture'] = $this->getRequest()->request->get('manufacture');
-        if(!count($model->getBySN($array['machineserialno']))) {
+        $array['workerno'] = $this->getRequest()->request->get('workerno');
+        $array['fullname'] = $this->getRequest()->request->get('fullname');
+        $array['sex'] = $this->getRequest()->request->get('sex');
+        if(!count($model->getBySN($array['workerno']))) {
             $model->add($array);
         } else {
             return new Response('Exist');
@@ -38,10 +39,11 @@ class WorkerController extends Controller implements DomainObjectInterface
 
     public function editAction(){
         $model = new WorkerModel($this->getDoctrine()->getManager());
-        $array['machineserialno'] = $this->getRequest()->request->get('machineserialno');
-        $array['manufacture'] = $this->getRequest()->request->get('manufacture');
+        $array['workerno'] = $this->getRequest()->request->get('workerno');
+        $array['fullname'] = $this->getRequest()->request->get('fullname');
+        $array['sex'] = $this->getRequest()->request->get('sex');
         $array['id'] = $this->getRequest()->request->get('id');
-        if(!count($model->getBySNAndDiffId($array['machineserialno'], $array['id']))) {
+        if(!count($model->getBySNAndDiffId($array['workerno'], $array['id']))) {
             $model->edit($array);
         } else {
             return new Response('Exist');

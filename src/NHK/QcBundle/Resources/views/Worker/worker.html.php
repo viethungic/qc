@@ -2,7 +2,7 @@
 <?php $view->extend('NHKQcBundle:Layout:layout.html.php') ?>
 <!-- Title Page -->
 <?php $view['slots']->start('title') ?>
-<?php echo BASE_TITLE; ?> | Manage machine
+<?php echo BASE_TITLE; ?> | Manage worker
 <?php $view['slots']->stop() ?>
 
 <!-- CSS -->
@@ -40,11 +40,12 @@ var TableEditable = function () {
             var jqTds = $('>td', nRow);
             jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
-            jqTds[2].innerHTML = aData[2];
+            jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = aData[3];
             jqTds[4].innerHTML = aData[4];
-            jqTds[5].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[6].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[5].innerHTML = aData[5];
+            jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -52,23 +53,25 @@ var TableEditable = function () {
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate(aData[2], nRow, 2, false);
+            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(aData[3], nRow, 3, false);
             oTable.fnUpdate(aData[4], nRow, 4, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
+            oTable.fnUpdate(aData[5], nRow, 5, false);
+            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
+            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
             oTable.fnDraw();
 
             var el = $("#setup-worker");
             App.blockUI({target: el, iconOnly: true});
-            if(aData[7]=='add'){
+            if(aData[8]=='add'){
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo $view['router']->generate('nhk_qc_machine_add') ?>",
+                    url: "<?php echo $view['router']->generate('nhk_qc_worker_add') ?>",
                     data: {
-                        machineserialno:jqInputs[0].value,
-                        manufacture:jqInputs[1].value,
-                        id:aData[4],
+                        workerno:jqInputs[0].value,
+                        fullname:jqInputs[1].value,
+                        sex:jqInputs[2].value,
+                        id:aData[5],
                     },
                     success: function(data) {
                         //                        $("#confirm-order-data").html(data);
@@ -89,11 +92,12 @@ var TableEditable = function () {
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo $view['router']->generate('nhk_qc_machine_edit') ?>",
+                    url: "<?php echo $view['router']->generate('nhk_qc_worker_edit') ?>",
                     data: {
-                        machineserialno:jqInputs[0].value,
-                        manufacture:jqInputs[1].value,
-                        id:aData[4],
+                        workerno:jqInputs[0].value,
+                        fullname:jqInputs[1].value,
+                        sex:jqInputs[2].value,
+                        id:aData[5],
                     },
                     success: function(data) {
                         if (data == 'OK') {
@@ -117,7 +121,8 @@ var TableEditable = function () {
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
+            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
+            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
             oTable.fnDraw();
         }
 
@@ -174,7 +179,7 @@ var TableEditable = function () {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', 'add']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', 'add']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -194,9 +199,9 @@ var TableEditable = function () {
             App.blockUI({target: el, iconOnly: true});
             $.ajax({
                 type: "POST",
-                url: "<?php echo $view['router']->generate('nhk_qc_machine_delete') ?>",
+                url: "<?php echo $view['router']->generate('nhk_qc_worker_delete') ?>",
                 data: {
-                    id:aData[4],
+                    id:aData[5],
                 },
                 success: function(data) {
                     oTable.fnDeleteRow(nRow);
@@ -322,6 +327,9 @@ var TableEditable = function () {
                             <!--                Cong Thuc-->
                         </th>
                         <th>
+                            <!--                Cong Thuc-->
+                        </th>
+                        <th>
                             <!--                So Bo-->
                         </th>
                         <th>
@@ -342,10 +350,13 @@ var TableEditable = function () {
                     <?php foreach($items as $item): ?>
                         <tr>
                             <td>
-                                <?php echo $item['machineserialno'] ?>
+                                <?php echo $item['workerno'] ?>
                             </td>
                             <td>
-                                <?php echo $item['manufacture'] ?>
+                                <?php echo $item['fullname'] ?>
+                            </td>
+                            <td>
+                                <?php echo $item['sex'] ?>
                             </td>
                             <td>
                                 <?php echo $item['datecreated'] ?>
