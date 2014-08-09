@@ -17,30 +17,6 @@ class SetupDataModel
         return $rs;
     }
 
-    public function getById($id){
-        $em = $this->_em;
-        $cn = $em->getConnection();
-        $sql = "SELECT * FROM qc_shape WHERE id = $id AND delif = 0";
-        $rs=$cn->fetchAll($sql);
-        return $rs;
-    }
-
-    public function getBySN($shapserialno){
-        $em = $this->_em;
-        $cn = $em->getConnection();
-        $sql = "SELECT * FROM qc_shape WHERE shapserialno = '$shapserialno' AND delif = 0";
-        $rs=$cn->fetchAll($sql);
-        return $rs;
-    }
-
-    public function getBySNAndDiffId($shapserialno, $id){
-        $em = $this->_em;
-        $cn = $em->getConnection();
-        $sql = "SELECT * FROM qc_shape WHERE shapserialno = '$shapserialno' AND id <> $id AND delif = 0";
-        $rs=$cn->fetchAll($sql);
-        return $rs;
-    }
-
     public function addShape($array){
         $em = $this->_em;
         $cn = $em->getConnection();

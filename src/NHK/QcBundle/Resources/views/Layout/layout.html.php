@@ -58,7 +58,7 @@
 
 //    /** Header */
 //
-//    $request = $app->getRequest();
+$request = $app->getRequest();
 //
 //    echo $view['actions']->render(
 //

@@ -13,7 +13,6 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Acl\Exception\AclNotFoundException;
 use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Symfony\Component\HttpFoundation\Response;
 use NHK\QcBundle\Model\SetupDataModel;
 
 class SetupDataController extends Controller implements DomainObjectInterface
@@ -35,11 +34,7 @@ class SetupDataController extends Controller implements DomainObjectInterface
         $array['kehoachgiaokeo'] = $this->getRequest()->request->get('kehoachgiaokeo');
         $array['donvitinh'] = $this->getRequest()->request->get('donvitinh');
         $array['tilechophep'] = $this->getRequest()->request->get('tilechophep');
-        if(!count($model->getBySN($array['shapserialno']))) {
-            $model->addShape($array);
-        } else {
-            return new Response('Exist');
-        }
+        $model->addShape($array);
         return new Response('OK');
     }
 
@@ -55,11 +50,7 @@ class SetupDataController extends Controller implements DomainObjectInterface
         $array['donvitinh'] = $this->getRequest()->request->get('donvitinh');
         $array['tilechophep'] = $this->getRequest()->request->get('tilechophep');
         $array['id'] = $this->getRequest()->request->get('id');
-        if(!count($model->getBySNAndDiffId($array['shapserialno'], $array['id']))) {
-            $model->editShape($array);
-        } else {
-            return new Response('Exist');
-        }
+        $model->editShape($array);
         return new Response('OK');
     }
 
