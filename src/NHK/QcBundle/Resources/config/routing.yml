@@ -21,3 +21,8 @@ nhk_qc_order:
 nhk_qc_worker:
     resource: "@NHKQcBundle/Resources/config/routes/worker_routing.yml"
     prefix:   /worker
+
+nhk_qc_monitoring:
+    resource: "@NHKQcBundle/Resources/config/routes/monitoring_routing.yml"
+    prefix:   /monitoring
+

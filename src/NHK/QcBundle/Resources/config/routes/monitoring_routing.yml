@@ -1,0 +1,15 @@
+nhk_qc_monitoring_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Monitoring:index }
+
+nhk_qc_monitoring_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:Monitoring:add }
+
+nhk_qc_monitoring_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Monitoring:edit }
+
+nhk_qc_monitoring_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:Monitoring:delete }
