@@ -9,7 +9,7 @@ security:
         
     providers:
         administrators:
-            entity: { class: NHKSecurityBundle:User}
+            entity: { class: NHKSecurityBundle:User , property: username}
 
     firewalls:
         secured_area:
