@@ -238,7 +238,7 @@ var TableEditable = function () {
                     <tbody>
                         <tr>
                             <td>
-                                Máy
+                                M
                             </td>
                             <?php while ($j < count($items)) {?>
                             <td>
@@ -257,7 +257,7 @@ var TableEditable = function () {
                         </tr>
                         <tr>
                             <td>
-                                MS Khuôn
+                                MSK
                             </td>
                             <?php while ($k < count($items)) {?>
                             <td>
