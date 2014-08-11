@@ -1,0 +1,15 @@
+nhk_qc_stock_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Stock:index }
+
+nhk_qc_stock_add:
+    path:     /add
+    defaults: { _controller: NHKQcBundle:Stock:add }
+
+nhk_qc_stock_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Stock:edit }
+
+nhk_qc_stock_delete:
+    path:     /delete
+    defaults: { _controller: NHKQcBundle:Stock:delete }

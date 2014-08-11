@@ -26,3 +26,11 @@ nhk_qc_monitoring:
     resource: "@NHKQcBundle/Resources/config/routes/monitoring_routing.yml"
     prefix:   /monitoring
 
+nhk_qc_result:
+    resource: "@NHKQcBundle/Resources/config/routes/result_routing.yml"
+    prefix:   /result
+
+nhk_qc_stock:
+    resource: "@NHKQcBundle/Resources/config/routes/stock_routing.yml"
+    prefix:   /stock
+

@@ -1,0 +1,11 @@
+nhk_qc_result_index:
+    path:     /
+    defaults: { _controller: NHKQcBundle:Result:index }
+
+nhk_qc_result_edit:
+    path:     /edit
+    defaults: { _controller: NHKQcBundle:Result:edit }
+
+nhk_qc_result_edit_qc:
+    path:     /edit-qc
+    defaults: { _controller: NHKQcBundle:Result:editqc }
