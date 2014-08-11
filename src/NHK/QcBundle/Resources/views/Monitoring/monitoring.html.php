@@ -120,14 +120,16 @@ var TableEditable = function () {
                 "lengthMenu": " _MENU_ records"
             },
             "columnDefs": [{ // set default column settings
-                'orderable': true,
+                'orderable': false,
+                
                 'targets': [0]
             }, {
                 "searchable": true,
                 "targets": [0]
             }],
+            "bSort" : false,
             "order": [
-                [0, "asc"]
+                //[0, "asc"]
             ] // set first column as a default sort by asc
         });
 
@@ -158,7 +160,7 @@ var TableEditable = function () {
                 /* Editing this row and want to save it */
                 saveRow(oTable<?php echo $i ?>, nEditing, <?php echo $totalItemPerLine ?>, <?php echo $i ?>);
                 nEditing = null;
-//                    alert("Updated! Do not forget to do some ajax to sync with backend :)");
+                //alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
                 /* No edit in progress - let's start one */
                 editRow(oTable<?php echo $i ?>, nRow, <?php echo $totalItemPerLine ?>);
@@ -257,10 +259,14 @@ var TableEditable = function () {
                         </th>
                         <?php while ($n < count($items)) {?>
                         <th>
-                            <a class="btn default" data-toggle="modal" href="#small">
-								 View
+                            <a class="btn " data-toggle="modal" href="#small">
+								 <?php echo "No. ".$n?>
+                                 <i class="fa fa-bell-o"></i>
+            					<span class="badge">
+            						 5
+            					</span>
 							</a>
-                            <?php echo "No. ".$n?>
+                            
                         </th>
                         <?php $n++; if($n%$itemsPerLine == 0) break;}?>
                         <th>
@@ -300,10 +306,7 @@ var TableEditable = function () {
                             <td>
                                 <?php echo $items[$k]['shapserialno'] ?>
                                 <div id="<?php echo $items[$k]['shapserialno'] ?>">
-                                <i class="fa fa-bell-o"></i>
-            					<span class="badge">
-            						 5
-            					</span>
+                                
                                 </div>
                             </td>
                             <?php $k++; if($k%$itemsPerLine == 0) break;}?>
