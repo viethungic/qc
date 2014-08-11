@@ -74,7 +74,7 @@ class MonitoringModel
         $em = $this->_em;
         $cn = $em->getConnection();
         $sql = " UPDATE qc_operation T
-                    SET T.workerno = ".$array['workerno']."
+                    SET T.workerno = '".$array['workerno']."'
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }
