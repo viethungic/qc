@@ -72,7 +72,13 @@ var TableEditable = function () {
                     },
                     success: function(data) {
                         //                        $("#confirm-order-data").html(data);
-                        alert('Adding success!');
+                        if (data == 'OK') {
+                            alert('Adding success!');
+                        } else if (data == 'Exist') {
+                            alert('Item exist!');
+                        } else {
+                            alert('Adding failed!');
+                        }
                         App.unblockUI(el);
                     },
                     error: function(){
@@ -90,8 +96,13 @@ var TableEditable = function () {
                         id:aData[4],
                     },
                     success: function(data) {
-                        //                        $("#confirm-order-data").html(data);
-                        alert('Editing success!');
+                        if (data == 'OK') {
+                            alert('Editing success!');
+                        } else if (data == 'Exist') {
+                            alert('Item exist!');
+                        } else {
+                            alert('Editing failed!');
+                        }
                         App.unblockUI(el);
                     },
                     error: function(){
