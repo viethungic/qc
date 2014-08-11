@@ -214,6 +214,37 @@ var TableEditable = function () {
                     </a>
                 </div>
             </div>
+            <div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header blue">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Máy #</h4>
+						</div>
+						<div class="modal-body">
+                            <table class="table table-hover">
+								<thead>
+								<tr>
+									<th> Khuôn</th>
+									<th>Nhân công</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>2525</td>
+                                    <td>125</td>
+								</tr>
+                                </tbody>
+                            </table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
             <div class="portlet-body">
                 <?php $n=$j=$k=$h=0; for ($i = 1; $i <= ceil(count($items)/$itemsPerLine); $i++) { ?>
                 <table class="table table-striped table-hover table-bordered" id="monitoring_table_<?php echo $i?>">
@@ -224,6 +255,9 @@ var TableEditable = function () {
                         </th>
                         <?php while ($n < count($items)) {?>
                         <th>
+                            <a class="btn default" data-toggle="modal" href="#small">
+								 View
+							</a>
                             <?php echo "No. ".$n?>
                         </th>
                         <?php $n++; if($n%$itemsPerLine == 0) break;}?>
@@ -243,6 +277,7 @@ var TableEditable = function () {
                             <?php while ($j < count($items)) {?>
                             <td>
                                 <?php echo $items[$j]['machineserialno'] ?>
+                                
                             </td>
                             <?php $j++; if($j%$itemsPerLine == 0) break;}?>
                             <td>
@@ -262,6 +297,12 @@ var TableEditable = function () {
                             <?php while ($k < count($items)) {?>
                             <td>
                                 <?php echo $items[$k]['shapserialno'] ?>
+                                <div id="<?php echo $items[$k]['shapserialno'] ?>">
+                                <i class="fa fa-bell-o"></i>
+            					<span class="badge">
+            						 5
+            					</span>
+                                </div>
                             </td>
                             <?php $k++; if($k%$itemsPerLine == 0) break;}?>
                             <td>
