@@ -15,6 +15,7 @@ use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Symfony\Component\HttpFoundation\Response;
 use NHK\QcBundle\Model\MachineModel;
+use NHK\QcBundle\Model\MonitoringModel;
 
 class MachineController extends Controller implements DomainObjectInterface
 {
@@ -26,10 +27,13 @@ class MachineController extends Controller implements DomainObjectInterface
 
     public function addAction(){
         $model = new MachineModel($this->getDoctrine()->getManager());
+        $monitor = new MonitoringModel($this->getDoctrine()->getManager());
         $array['machineserialno'] = $this->getRequest()->request->get('machineserialno');
         $array['manufacture'] = $this->getRequest()->request->get('manufacture');
         if(!count($model->getBySN($array['machineserialno']))) {
             $model->add($array);
+            $last = $model->getLastId();
+            $monitor->add($last[0]['id']);
         } else {
             return new Response('Exist');
         }

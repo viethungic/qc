@@ -33,37 +33,48 @@ class MonitoringModel
         return $rs;
     }
 
-    public function add($array){
+    public function getBySNAndDiffId($machineid, $id){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = "SELECT * FROM qc_operation WHERE machineid = $machineid AND id <> $id AND delif = 0";
+        $rs=$cn->fetchAll($sql);
+        return $rs;
+    }
+
+    public function add($id){
         $em = $this->_em;
         $cn = $em->getConnection();
         $cn->insert('qc_operation',
             array(
-                'Monitoringno' => $array['Monitoringno'],
-                'fullname' => $array['fullname'],
-                'sex' => $array['sex'],
+                'machineid' => $id,
                 'datecreated' => date('Y-m-d'),
                 'usercreated' => 'Nam Pham',
             ));
     }
 
-    public function edit($array){
+    public function editMachine($array){
         $em = $this->_em;
         $cn = $em->getConnection();
         $sql = " UPDATE qc_operation T
-                    SET T.Monitoringno = '".$array['Monitoringno']."',
-                        T.fullname = '".$array['fullname']."',
-                        T.sex = '".$array['sex']."',
-                        T.datecreated = '".date('Y-m-d')."',
-                        T.usercreated = 'Nam Pham'
+                    SET T.machineid = ".$array['machineid']."
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }
 
-    public function delete($array){
+    public function editShape($array){
         $em = $this->_em;
         $cn = $em->getConnection();
         $sql = " UPDATE qc_operation T
-                    SET T.delif = 1
+                    SET T.shapeid = ".$array['shapeid']."
+                WHERE T.id = ".$array['id'];
+        $cn->executeQuery($sql);
+    }
+
+    public function editWorker($array){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = " UPDATE qc_operation T
+                    SET T.workerno = ".$array['workerno']."
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }

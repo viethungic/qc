@@ -17,6 +17,14 @@ class MachineModel
         return $rs;
     }
 
+    public function getLastId(){
+        $em = $this->_em;
+        $cn = $em->getConnection();
+        $sql = "SELECT * FROM qc_machine WHERE delif = 0 ORDER BY id DESC";
+        $rs=$cn->fetchAll($sql);
+        return $rs;
+    }
+
     public function getById($id){
         $em = $this->_em;
         $cn = $em->getConnection();

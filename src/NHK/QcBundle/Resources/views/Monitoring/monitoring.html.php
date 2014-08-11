@@ -46,7 +46,7 @@ var TableEditable = function () {
             jqTds[i+1].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
-        function saveRow(oTable, nRow, totalItemPerLine ) {
+        function saveRow(oTable, nRow, totalItemPerLine, row ) {
             var aData = oTable.fnGetData(nRow);
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(aData[0], nRow, 0, false);
@@ -57,24 +57,26 @@ var TableEditable = function () {
             oTable.fnUpdate('<a class="delete" href=""></a>', nRow, i+1, false);
             oTable.fnDraw();
 
+            var items = $('#setup-monitoring').serializeArray();
+            for (var i = 1; i <= totalItemPerLine; i++) {
+                items.push({name:i, value:jqInputs[i-1].value});
+            }
+            items.push({name:"column", value:aData[0]});
+            items.push({name:"row", value:row});
+
             var el = $("#setup-monitoring");
             App.blockUI({target: el, iconOnly: true});
             $.ajax({
                 type: "POST",
                 url: "<?php echo $view['router']->generate('nhk_qc_monitoring_edit') ?>",
-                data: {
-                    monitoringno:jqInputs[0].value,
-                    fullname:jqInputs[1].value,
-                    sex:jqInputs[2].value,
-                    id:aData[5],
-                },
+                data: items,
                 success: function(data) {
                     if (data == 'OK') {
                         alert('Editing success!');
                     } else if (data == 'Exist') {
-                        alert('Item exist!');
+                        alert('Machine exists at other position!');
                     } else {
-                        alert('Editing success!');
+                        alert('Editing failed!');
                     }
                     App.unblockUI(el);
                 },
@@ -154,7 +156,7 @@ var TableEditable = function () {
                 nEditing = nRow;
             } else if (nEditing == nRow && this.innerHTML == "Save") {
                 /* Editing this row and want to save it */
-                saveRow(oTable<?php echo $i ?>, nEditing, <?php echo $totalItemPerLine ?>);
+                saveRow(oTable<?php echo $i ?>, nEditing, <?php echo $totalItemPerLine ?>, <?php echo $i ?>);
                 nEditing = null;
 //                    alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
