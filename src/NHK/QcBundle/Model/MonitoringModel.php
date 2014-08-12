@@ -47,8 +47,8 @@ class MonitoringModel
         $cn->insert('qc_operation',
             array(
                 'machineid' => $id,
-                'datecreated' => date('Y-m-d'),
-                'usercreated' => 'Nam Pham',
+                'datecreated' => date('Y-m-d H:i:s'),
+                'usercreated' => 'Hung Truong',
             ));
     }
 

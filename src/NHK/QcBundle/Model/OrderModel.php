@@ -37,8 +37,8 @@ class OrderModel
                 'ngaybatdau' => $array['ngaybatdau'],
                 'ngayhoanthanh' => $array['ngayhoanthanh'],
                 'trangthaihoanthanh' => 0,
-                'datecreated' => date('Y-m-d'),
-                'usercreated' => 'Nam Pham',
+                'datecreated' => date('Y-m-d H:i:s'),
+                'usercreated' => 'Hung Truong',
             ));
     }
 
@@ -53,8 +53,8 @@ class OrderModel
                         T.ngaybatdau = '".$array['ngaybatdau']."',
                         T.ngayhoanthanh = '".$array['ngayhoanthanh']."',
                         T.trangthaihoanthanh = 0,
-                        T.datecreated = '".date('Y-m-d')."',
-                        T.usercreated = 'Nam Pham'
+                        T.datecreated = '".date('Y-m-d H:i:s')."',
+                        T.usercreated = 'Hung Truong'
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }

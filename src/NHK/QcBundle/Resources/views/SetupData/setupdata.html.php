@@ -38,7 +38,7 @@
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
+                jqTds[0].innerHTML = aData[0];
                 jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
@@ -47,31 +47,33 @@
                 jqTds[6].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[6] + '">';
                 jqTds[7].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[7] + '">';
                 jqTds[8].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[8] + '">';
-                jqTds[9].innerHTML = '<input type="hidden" class="form-control input-small" value="' + aData[9] + '">';
-                jqTds[10].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[11].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                jqTds[9].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[9] + '">';
+                jqTds[10].innerHTML = aData[10];
+                jqTds[11].innerHTML = '<a class="edit" href="">Save</a>';
+                jqTds[12].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }
 
             function saveRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
-                oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
-                oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
-                oTable.fnUpdate(jqInputs[8].value, nRow, 8, false);
-                oTable.fnUpdate(jqInputs[9].value, nRow, 9, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 11, false);
+                oTable.fnUpdate(aData[0], nRow, 0, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
+                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
+                oTable.fnUpdate(jqInputs[3].value, nRow, 4, false);
+                oTable.fnUpdate(jqInputs[4].value, nRow, 5, false);
+                oTable.fnUpdate(jqInputs[5].value, nRow, 6, false);
+                oTable.fnUpdate(jqInputs[6].value, nRow, 7, false);
+                oTable.fnUpdate(jqInputs[7].value, nRow, 8, false);
+                oTable.fnUpdate(jqInputs[8].value, nRow, 9, false);
+                oTable.fnUpdate(aData[10], nRow, 10, false);
+                oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 11, false);
+                oTable.fnUpdate('<a class="delete" href="">Xóa</a>', nRow, 12, false);
                 oTable.fnDraw();
 
                 var el = $("#setup-machine");
                 App.blockUI({target: el, iconOnly: true});
-                if(aData[12]=='add'){
+                if(aData[13]=='add'){
                     $.ajax({
                         type: "POST",
                         url: "<?php echo $view['router']->generate('nhk_qc_set_up_add') ?>",
@@ -85,7 +87,7 @@
                             kehoachgiaokeo:jqInputs[6].value,
                             donvitinh:jqInputs[7].value,
                             tilechophep:jqInputs[8].value,
-                            id:jqInputs[9].value,
+                            id:aData[10],
                         },
                         success: function(data) {
     //                        $("#confirm-order-data").html(data);
@@ -117,7 +119,7 @@
                             kehoachgiaokeo:jqInputs[6].value,
                             donvitinh:jqInputs[7].value,
                             tilechophep:jqInputs[8].value,
-                            id:jqInputs[9].value,
+                            id:aData[10],
                         },
                         success: function(data) {
                             if (data == 'OK') {
@@ -148,8 +150,7 @@
                 oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
                 oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
                 oTable.fnUpdate(jqInputs[8].value, nRow, 8, false);
-                oTable.fnUpdate(jqInputs[9].value, nRow, 9, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
+                oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 11, false);
                 oTable.fnDraw();
             }
 
@@ -206,7 +207,7 @@
                     }
                 }
 
-                var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', 'add']);
+                var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', '', 'add']);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
                 editRow(oTable, nRow);
                 nEditing = nRow;
@@ -228,7 +229,7 @@
                     type: "POST",
                     url: "<?php echo $view['router']->generate('nhk_qc_set_up_delete') ?>",
                     data: {
-                        id:aData[9],
+                        id:aData[10],
                     },
                     success: function(data) {
                         oTable.fnDeleteRow(nRow);
@@ -309,28 +310,30 @@ var TableEditable2 = function () {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
             jqTds[0].innerHTML = aData[0];
-            jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
+            jqTds[1].innerHTML = aData[1];
             jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
             jqTds[4].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[4] + '">';
             jqTds[5].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[5] + '">';
-            jqTds[6].innerHTML = aData[6];
-            jqTds[7].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[8].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[6].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[6] + '">';
+            jqTds[7].innerHTML = aData[7];
+            jqTds[8].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[9].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
         function saveRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
             var jqInputs = $('input', nRow);
-            oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-            oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-            oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-            oTable.fnUpdate(aData[5], nRow, 5, false);
-            oTable.fnUpdate(aData[6], nRow, 6, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 7, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 8, false);
+            oTable.fnUpdate(aData[0], nRow, 0, false);
+            oTable.fnUpdate(aData[1], nRow, 1, false);
+            oTable.fnUpdate(jqInputs[0].value, nRow, 2, false);
+            oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
+            oTable.fnUpdate(jqInputs[2].value, nRow, 4, false);
+            oTable.fnUpdate(jqInputs[3].value, nRow, 5, false);
+            oTable.fnUpdate(jqInputs[4].value, nRow, 6, false);
+            oTable.fnUpdate(aData[7], nRow, 7, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 8, false);
+            oTable.fnUpdate('<a class="delete" href="">Xóa</a>', nRow, 9, false);
             oTable.fnDraw();
 
             var el = $("#setup-qc");
@@ -344,7 +347,7 @@ var TableEditable2 = function () {
                     docung:jqInputs[2].value,
                     kichthuoc:jqInputs[3].value,
                     yeucaukhac:jqInputs[4].value,
-                    id:aData[6],
+                    id:aData[7],
                 },
                 success: function(data) {
                     //                        $("#confirm-order-data").html(data);
@@ -365,7 +368,7 @@ var TableEditable2 = function () {
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
             oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 7, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 8, false);
             oTable.fnDraw();
         }
 
@@ -422,7 +425,7 @@ var TableEditable2 = function () {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -492,7 +495,7 @@ var TableEditable2 = function () {
 <div class="portlet box blue">
 <div class="portlet-title">
     <div class="caption">
-        <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+        <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> THIẾT LẬP THÔNG SỐ SẢN PHẨM</i>
     </div>
     <div class="tools">
         <a href="javascript:;" class="collapse">
@@ -509,7 +512,7 @@ var TableEditable2 = function () {
     <div class="table-toolbar">
         <div class="btn-group">
             <button id="shape_table_new" class="btn green">
-                Add New <i class="fa fa-plus"></i>
+                Thêm mới <i class="fa fa-plus"></i>
             </button>
         </div>
         <div class="btn-group pull-right">
@@ -537,47 +540,27 @@ var TableEditable2 = function () {
     <table class="table table-striped table-hover table-bordered" id="shape_table">
         <thead>
         <tr>
-            <th>
-<!--                Ma So SP-->
-            </th>
-            <th>
-<!--                Cong Thuc-->
-            </th>
-            <th>
-<!--                So Bo-->
-            </th>
-            <th>
-<!--                So CAV-->
-            </th>
-            <th>
-<!--                Cuong Do Lao Dong-->
-            </th>
-            <th>
-<!--                Trong Luong Phoi-->
-            </th>
-            <th>
-<!--                KH giao keo-->
-            </th>
-            <th>
-<!--                DVT-->
-            </th>
-            <th>
-<!--                Ti Le CP-->
-            </th>
-            <th>
-                <!-- ID# -->
-            </th>
-            <th>
-<!--                Sua-->
-            </th>
-            <th>
-<!--                Xoa-->
-            </th>
+            <th>STT</th>
+            <th>Mã số SP</th>
+            <th>Công thức</th>
+            <th>Số bộ</th>
+            <th>Số CAV</th>
+            <th>Cường độ lao động</th>
+            <th>Trọng lượng phôi</th>
+            <th>Kế hoạch giao keo</th>
+            <th>Đơn vị tính</th>
+            <th>Tỉ lệ cho phép</th>
+            <th>ID</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
         </tr>
         </thead>
         <tbody>
         <?php foreach($shapes as $shape): ?>
         <tr>
+            <td>
+                <?php echo $shape['id'] ?>
+            </td>
             <td>
                 <?php echo $shape['shapserialno'] ?>
             </td>
@@ -587,7 +570,7 @@ var TableEditable2 = function () {
             <td>
                 <?php echo $shape['sobo'] ?>
             </td>
-            <td class="center">
+            <td>
                 <?php echo $shape['socav'] ?>
             </td>
             <td>
@@ -599,10 +582,10 @@ var TableEditable2 = function () {
             <td>
                 <?php echo $shape['kehoachgiaokeo'] ?>
             </td>
-            <td class="center">
+            <td>
                 <?php echo $shape['donvitinh'] ?>
             </td>
-            <td class="center">
+            <td>
                 <?php echo $shape['tilechophep'] ?>
             </td>
             <td>
@@ -610,12 +593,12 @@ var TableEditable2 = function () {
             </td>
             <td>
                 <a class="edit" href="javascript:;">
-                    Edit
+                    Sửa
                 </a>
             </td>
             <td>
                 <a class="delete" href="javascript:;">
-                    Delete
+                    Xóa
                 </a>
             </td>
         </tr>
@@ -633,7 +616,7 @@ var TableEditable2 = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO QC-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> THIẾT LẬP THÔNG SỐ ĐÁNH GIÁ QC</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -650,7 +633,7 @@ var TableEditable2 = function () {
                 <div class="table-toolbar">
                     <div class="btn-group" style="margin-bottom: 30px">
                         <!--<button id="qc_table_new" class="btn green">
-                            Add New <i class="fa fa-plus"></i>
+                            Thêm mới <i class="fa fa-plus"></i>
                         </button>-->
                     </div>
                     <div class="btn-group pull-right">
@@ -678,38 +661,25 @@ var TableEditable2 = function () {
                 <table class="table table-striped table-hover table-bordered" id="qc_table">
                     <thead>
                     <tr>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                            <!--                Cuong Do Lao Dong-->
-                        </th>
-                        <th>
-                                                <!-- ID# -->
-                        </th>
-                        <th>
-                            <!--                Sua-->
-                        </th>
+                        <th>STT</th>
+                        <th>Mã số SP</th>
+                        <th>Thông số ngoại quan</th>
+                        <th>Hình ảnh ngoại quan</th>
+                        <th>Độ cứng</th>
+                        <th>Kích thước</th>
+                        <th>Yêu cầu khác</th>
+                        <th>ID</th>
+                        <th>Sửa</th>
                         <th style="display: none" class="cancel-col">
-                            <!--                Sua-->
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach($shapes as $shape): ?>
                         <tr>
+                            <td>
+                                <?php echo $shape['id'] ?>
+                            </td>
                             <td>
                                 <?php echo $shape['shapserialno'] ?>
                             </td>
@@ -733,7 +703,7 @@ var TableEditable2 = function () {
                             </td>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td style="display: none" class="cancel-col">

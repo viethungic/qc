@@ -246,7 +246,7 @@ var TableEditable = function () {
 					<div class="portlet box blue">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-edit"></i>Editable Table
+                                <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> QUẢN LÝ NGƯỜI DÙNG</i>
 							</div>
 							<div class="tools">
 								<a href="javascript:;" class="collapse">
@@ -263,7 +263,7 @@ var TableEditable = function () {
 							<div class="table-toolbar">
 								<div class="btn-group">
 									<button id="user_table_new" class="btn green">
-									Add New <i class="fa fa-plus"></i>
+									Thêm mới <i class="fa fa-plus"></i>
 									</button>
 								</div>
 								<div class="btn-group pull-right">
@@ -292,20 +292,19 @@ var TableEditable = function () {
 							<thead>
 							<tr>
 								<th>
-									 Username
+									 Tên đăng nhập
 								</th>
 								<th>
-									 Full Name
+									 Họ tên
 								</th>
 								<th>
-									 Role
-								</th>
-								
-								<th>
-									 Edit
+									 Vai trò
 								</th>
 								<th>
-									 Delete
+									 Sửa
+								</th>
+								<th>
+									 Xóa
 								</th>
 							</tr>
 							</thead>

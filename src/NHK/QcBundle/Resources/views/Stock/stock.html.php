@@ -61,8 +61,8 @@ var TableEditable = function () {
             oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
             oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
             oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 35, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 36, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 35, false);
+            oTable.fnUpdate('<a class="delete" href="">Xóa</a>', nRow, 36, false);
             oTable.fnDraw();
 
             var el = $("#setup-worker");
@@ -103,7 +103,7 @@ var TableEditable = function () {
             oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
             oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
             oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 35, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 35, false);
             oTable.fnDraw();
         }
 
@@ -201,7 +201,7 @@ var TableEditable = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> PHIẾU THEO DÕI SẢN XUẤT</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -254,10 +254,10 @@ var TableEditable = function () {
                         <th>Số CAV</th>
                         <th>Cường độ lao đông %</th>
                         <th>Kế hoạch sản xuất ca 12h</th>
-                        <th>Trọng Lương phôi</th>
-                        <th>Kế hoạch Giao keo</th>
+                        <th>Trọng lương phôi</th>
+                        <th>Kế hoạch giao keo</th>
 
-                        <th>đv</th>
+                        <th>ĐV</th>
                         <th>SL</th>
                         <th>Keo THỬ</th>
                         <th>Keo XỬ LÝ</th>
@@ -277,7 +277,7 @@ var TableEditable = function () {
                         <th>6</th>
                         <th>7</th>
                         <th>8</th>
-                        <th>Stt Cây keo</th>
+                        <th>STT Cây keo</th>
 
                         <th>MS QC</th>
                         <th>MS Ghi chú</th>
@@ -338,7 +338,7 @@ var TableEditable = function () {
                             <td>
                                 <?php echo $item['id'] ?>
                             </td>
-                            <td><a class="edit" href="javascript:;">Edit</a></td>
+                            <td><a class="edit" href="javascript:;">Sửa</a></td>
                             <td style="display: none" class="cancel-col"><a class="delete" href="javascript:;"></a></td>
                         </tr>
                     <?php endforeach ?>

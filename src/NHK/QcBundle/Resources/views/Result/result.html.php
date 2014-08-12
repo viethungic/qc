@@ -61,8 +61,8 @@
                 oTable.fnUpdate(aData[5], nRow, 5, false);
                 oTable.fnUpdate(jqInputs[2].value, nRow, 6, false);
                 oTable.fnUpdate(aData[7], nRow, 7, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 8, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 9, false);
+                oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 8, false);
+                oTable.fnUpdate('<a class="delete" href="">Xóa</a>', nRow, 9, false);
                 oTable.fnDraw();
 
                 var el = $("#setup-release");
@@ -98,7 +98,7 @@
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 8, false);
+                oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 8, false);
                 oTable.fnDraw();
             }
 
@@ -215,7 +215,7 @@ var TableEditable2 = function () {
             var aData = oTable.fnGetData(nRow);
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 16, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 16, false);
             oTable.fnUpdate('<a class="delete" href=""></a>', nRow, 17, false);
             oTable.fnDraw();
 
@@ -243,7 +243,7 @@ var TableEditable2 = function () {
         function cancelEditRow(oTable, nRow) {
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 16, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 16, false);
             oTable.fnDraw();
         }
 
@@ -344,7 +344,7 @@ var TableEditable2 = function () {
 <div class="portlet box blue">
 <div class="portlet-title">
     <div class="caption">
-        <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+        <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> KẾT QUẢ LÒ ĐẦU LÊN KHUÔN</i>
     </div>
     <div class="tools">
         <a href="javascript:;" class="collapse">
@@ -363,35 +363,16 @@ var TableEditable2 = function () {
     <table class="table table-striped table-hover table-bordered" id="shape_release">
         <thead>
         <tr>
-            <th>
-                <!--                STT-->
-            </th>
-            <th>
-<!--                Ma So SP-->
-            </th>
-            <th>
-<!--                Cong Thuc-->
-            </th>
-            <th>
-<!--                So Bo-->
-            </th>
-            <th>
-<!--                So CAV-->
-            </th>
-            <th>
-<!--                Cuong Do Lao Dong-->
-            </th>
-            <th>
-<!--                Trong Luong Phoi-->
-            </th>
-            <th>
-                <!-- ID# -->
-            </th>
-            <th>
-<!--                Sua-->
-            </th>
+            <th>STT</th>
+            <th>Mã số Máy</th>
+            <th>Mã số SP</th>
+            <th>Mã số CN</th>
+            <th>Giờ nhận</th>
+            <th>Giờ báo cáo</th>
+            <th>Kết quả</th>
+            <th>ID</th>
+            <th>Sửa</th>
             <th style="display: none" class="cancel-col">
-<!--                Sua-->
             </th>
         </tr>
         </thead>
@@ -424,7 +405,7 @@ var TableEditable2 = function () {
             </td>
             <td>
                 <a class="edit" href="javascript:;">
-                    Edit
+                    Sửa
                 </a>
             </td>
             <td style="display: none" class="cancel-col">
@@ -447,7 +428,7 @@ var TableEditable2 = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO QC-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> KẾT QUẢ SẢN XUẤT</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -466,59 +447,24 @@ var TableEditable2 = function () {
                 <table class="table table-striped table-hover table-bordered" id="sx_table">
                     <thead>
                     <tr>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                            <!--                Cuong Do Lao Dong-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                            <!--                Cuong Do Lao Dong-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                                                <!-- ID# -->
-                        </th>
-                        <th>
-                            <!--                Sua-->
-                        </th>
+                        <th>STT</th>
+                        <th>STT Cây keo</th>
+                        <th>Mã số SP</th>
+                        <th>Mã số Máy</th>
+                        <th>Mã số CN</th>
+                        <th>Chánh phẩm</th>
+                        <th>Phế phẩm 1</th>
+                        <th>Phế phẩm 2</th>
+                        <th>Phế phẩm 3</th>
+                        <th>Phế phẩm 4</th>
+                        <th>Phế phẩm 5</th>
+                        <th>Phế phẩm 6</th>
+                        <th>Phế phẩm 7</th>
+                        <th>Phế phẩm 8</th>
+                        <th>Tỷ lệ phế phẩm</th>
+                        <th>ID</th>
+                        <th>Sửa</th>
                         <th style="display: none" class="cancel-col">
-                            <!--                Sua-->
                         </th>
                     </tr>
                     </thead>
@@ -575,7 +521,7 @@ var TableEditable2 = function () {
                             </td>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td style="display: none" class="cancel-col">

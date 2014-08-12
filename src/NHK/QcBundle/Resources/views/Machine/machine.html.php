@@ -38,37 +38,39 @@ var TableEditable = function () {
         function editRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
-            jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
+            jqTds[0].innerHTML = aData[0];
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
-            jqTds[2].innerHTML = aData[2];
+            jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = aData[3];
             jqTds[4].innerHTML = aData[4];
-            jqTds[5].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[6].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[5].innerHTML = aData[5];
+            jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
         function saveRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
             var jqInputs = $('input', nRow);
-            oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-            oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-            oTable.fnUpdate(aData[2], nRow, 2, false);
+            oTable.fnUpdate(aData[0], nRow, 0, false);
+            oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
+            oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
             oTable.fnUpdate(aData[3], nRow, 3, false);
             oTable.fnUpdate(aData[4], nRow, 4, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
+            oTable.fnUpdate(aData[5], nRow, 5, false);
+            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
+            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
             oTable.fnDraw();
 
             var el = $("#setup-machine");
             App.blockUI({target: el, iconOnly: true});
-            if(aData[7]=='add'){
+            if(aData[8]=='add'){
                 $.ajax({
                     type: "POST",
                     url: "<?php echo $view['router']->generate('nhk_qc_machine_add') ?>",
                     data: {
                         machineserialno:jqInputs[0].value,
                         manufacture:jqInputs[1].value,
-                        id:aData[4],
+                        id:aData[5],
                     },
                     success: function(data) {
                         //                        $("#confirm-order-data").html(data);
@@ -93,7 +95,7 @@ var TableEditable = function () {
                     data: {
                         machineserialno:jqInputs[0].value,
                         manufacture:jqInputs[1].value,
-                        id:aData[4],
+                        id:aData[5],
                     },
                     success: function(data) {
                         if (data == 'OK') {
@@ -174,7 +176,7 @@ var TableEditable = function () {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', 'add']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', 'add']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -196,7 +198,7 @@ var TableEditable = function () {
                 type: "POST",
                 url: "<?php echo $view['router']->generate('nhk_qc_machine_delete') ?>",
                 data: {
-                    id:aData[4],
+                    id:aData[5],
                 },
                 success: function(data) {
                     oTable.fnDeleteRow(nRow);
@@ -270,7 +272,7 @@ var TableEditable = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> QUẢN LÝ MÁY</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -287,7 +289,7 @@ var TableEditable = function () {
                 <div class="table-toolbar">
                     <div class="btn-group">
                         <button id="machine_table_new" class="btn green">
-                            Add New <i class="fa fa-plus"></i>
+                            Thêm mới <i class="fa fa-plus"></i>
                         </button>
                     </div>
                     <div class="btn-group pull-right">
@@ -315,32 +317,22 @@ var TableEditable = function () {
                 <table class="table table-striped table-hover table-bordered" id="machine_table">
                     <thead>
                     <tr>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                            <!-- ID# -->
-                        </th>
-                        <th>
-                            <!--                Sua-->
-                        </th>
-                        <th>
-                            <!--                Xoa-->
-                        </th>
+                        <th>STT</th>
+                        <th>Mã số Máy</th>
+                        <th>Nhà sản xuất</th>
+                        <th>Ngày tạo</th>
+                        <th>Người tạo</th>
+                        <th>ID</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach($items as $item): ?>
                         <tr>
+                            <td>
+                                <?php echo $item['id'] ?>
+                            </td>
                             <td>
                                 <?php echo $item['machineserialno'] ?>
                             </td>
@@ -358,12 +350,12 @@ var TableEditable = function () {
                             </td>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td>
                                 <a class="delete" href="javascript:;">
-                                    Delete
+                                    Xóa
                                 </a>
                             </td>
                         </tr>

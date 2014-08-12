@@ -631,13 +631,13 @@ $routeName = $request->get('_route');
 						</li>
 						<li>
 							<a href="#">
-								Page Layouts
+								QC
 							</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
 							<a href="#">
-								Horizontal Mega Menu 1
+								Chi tiết
 							</a>
 						</li>
 					</ul>

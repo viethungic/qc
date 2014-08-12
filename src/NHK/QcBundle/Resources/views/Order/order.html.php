@@ -48,8 +48,9 @@ var TableEditable = function () {
             jqTds[7].innerHTML = aData[7];
             jqTds[8].innerHTML = aData[8];
             jqTds[9].innerHTML = aData[9];
-            jqTds[10].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[11].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[10].innerHTML = aData[10];
+            jqTds[11].innerHTML = '<a class="edit" href="">Save</a>';
+            jqTds[12].innerHTML = '<a class="cancel" href="">Cancel</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -65,13 +66,14 @@ var TableEditable = function () {
             oTable.fnUpdate(aData[7], nRow, 7, false);
             oTable.fnUpdate(aData[8], nRow, 8, false);
             oTable.fnUpdate(aData[9], nRow, 9, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 11, false);
+            oTable.fnUpdate(aData[10], nRow, 10, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 11, false);
+            oTable.fnUpdate('<a class="delete" href="">Xóa</a>', nRow, 12, false);
             oTable.fnDraw();
 
             var el = $("#setup-order");
             App.blockUI({target: el, iconOnly: true});
-            if(aData[12]=='add'){
+            if(aData[13]=='add'){
                 $.ajax({
                     type: "POST",
                     url: "<?php echo $view['router']->generate('nhk_qc_order_add') ?>",
@@ -80,7 +82,7 @@ var TableEditable = function () {
                         soluongyeucau:jqInputs[1].value,
                         ngaybatdau:jqInputs[2].value,
                         ngayhoanthanh:jqInputs[3].value,
-                        id:aData[0],
+                        id:aData[10],
                     },
                     success: function(data) {
                         //                        $("#confirm-order-data").html(data);
@@ -107,7 +109,7 @@ var TableEditable = function () {
                         soluongyeucau:jqInputs[1].value,
                         ngaybatdau:jqInputs[2].value,
                         ngayhoanthanh:jqInputs[3].value,
-                        id:aData[0],
+                        id:aData[10],
                     },
                     success: function(data) {
                         if (data == 'OK') {
@@ -133,7 +135,7 @@ var TableEditable = function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 10, false);
             oTable.fnDraw();
         }
 
@@ -212,7 +214,7 @@ var TableEditable = function () {
                 type: "POST",
                 url: "<?php echo $view['router']->generate('nhk_qc_order_delete') ?>",
                 data: {
-                    id:aData[0],
+                    id:aData[10],
                 },
                 success: function(data) {
                     oTable.fnDeleteRow(nRow);
@@ -286,7 +288,7 @@ var TableEditable = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> YÊU CẦU SẢN XUẤT</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -303,7 +305,7 @@ var TableEditable = function () {
                 <div class="table-toolbar">
                     <div class="btn-group">
                         <button id="order_table_new" class="btn green">
-                            Add New <i class="fa fa-plus"></i>
+                            Thêm mới <i class="fa fa-plus"></i>
                         </button>
                     </div>
                     <div class="btn-group pull-right">
@@ -331,42 +333,19 @@ var TableEditable = function () {
                 <table class="table table-striped table-hover table-bordered" id="order_table">
                     <thead>
                     <tr>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                Ma So SP-->
-                        </th>
-                        <th>
-                            <!--                Cong Thuc-->
-                        </th>
-                        <th>
-                            <!--                So Bo-->
-                        </th>
-                        <th>
-                            <!--                So CAV-->
-                        </th>
-                        <th>
-                            <!-- ID# -->
-                        </th>
-                        <th>
-                            <!--                Sua-->
-                        </th>
-                        <th>
-                            <!--                Xoa-->
-                        </th>
+                        <th>STT</th>
+                        <th>Mã số SP</th>
+                        <th>SL yêu cầu</th>
+                        <th>SL hoàn thành</th>
+                        <th>SL còn lại</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày hoàn thành</th>
+                        <th>Trạng thái hoàn thành</th>
+                        <th>Ngày tạo</th>
+                        <th>Người tạo</th>
+                        <th>ID</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -403,13 +382,16 @@ var TableEditable = function () {
                                 <?php echo $item['usercreated'] ?>
                             </td>
                             <td>
+                                <?php echo $item['id'] ?>
+                            </td>
+                            <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td>
                                 <a class="delete" href="javascript:;">
-                                    Delete
+                                    Xóa
                                 </a>
                             </td>
                         </tr>

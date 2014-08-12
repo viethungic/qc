@@ -49,8 +49,8 @@ class WorkerModel
                 'workerno' => $array['workerno'],
                 'fullname' => $array['fullname'],
                 'sex' => $array['sex'],
-                'datecreated' => date('Y-m-d'),
-                'usercreated' => 'Nam Pham',
+                'datecreated' => date('Y-m-d H:i:s'),
+                'usercreated' => 'Hung Truong',
             ));
     }
 
@@ -61,8 +61,8 @@ class WorkerModel
                     SET T.workerno = '".$array['workerno']."',
                         T.fullname = '".$array['fullname']."',
                         T.sex = '".$array['sex']."',
-                        T.datecreated = '".date('Y-m-d')."',
-                        T.usercreated = 'Nam Pham'
+                        T.datecreated = '".date('Y-m-d H:i:s')."',
+                        T.usercreated = 'Hung Truong'
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }

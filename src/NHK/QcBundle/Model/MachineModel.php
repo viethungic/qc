@@ -56,8 +56,8 @@ class MachineModel
             array(
                 'machineserialno' => $array['machineserialno'],
                 'manufacture' => $array['manufacture'],
-                'datecreated' => date('Y-m-d'),
-                'usercreated' => 'Nam Pham',
+                'datecreated' => date('Y-m-d H:i:s'),
+                'usercreated' => 'Hung Truong',
             ));
     }
 
@@ -67,8 +67,8 @@ class MachineModel
         $sql = " UPDATE qc_machine T
                     SET T.machineserialno = '".$array['machineserialno']."',
                         T.manufacture = '".$array['manufacture']."',
-                        T.datecreated = '".date('Y-m-d')."',
-                        T.usercreated = 'Nam Pham'
+                        T.datecreated = '".date('Y-m-d H:i:s')."',
+                        T.usercreated = 'Hung Truong'
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }

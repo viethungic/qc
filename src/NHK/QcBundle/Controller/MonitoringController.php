@@ -41,7 +41,7 @@ class MonitoringController extends Controller implements DomainObjectInterface
         else
             $totalItemPerLine = $this->itemsPerLine;
 
-        if ($array['column'] == 'M') {
+        if ($array['column'] == 'Mã số máy') {
             for ($i = 1; $i <= $totalItemPerLine; $i++) {
                 $machineInfo = $machine->getBySN($this->getRequest()->request->get($i));
                 $array['machineid'] = $machineInfo[0]['id'];
@@ -52,14 +52,14 @@ class MonitoringController extends Controller implements DomainObjectInterface
                     return new Response('Exist');
                 }
             }
-        } else if ($array['column'] == 'MSK') {
+        } else if ($array['column'] == 'Mã số SP') {
             for ($i = 1; $i <= $totalItemPerLine; $i++) {
                 $shapeInfo = $setupdata->getBySN($this->getRequest()->request->get($i));
                 $array['shapeid'] = $shapeInfo[0]['id'];
                 $array['id'] = ($array['row']-1)*$this->itemsPerLine + $i;
                 $model->editShape($array);
             }
-        } else if ($array['column'] == 'MSCN') {
+        } else if ($array['column'] == 'Mã số CN') {
             for ($i = 1; $i <= $totalItemPerLine; $i++) {
                 $array['workerno'] = $this->getRequest()->request->get($i);
                 $array['id'] = ($array['row']-1)*$this->itemsPerLine + $i;

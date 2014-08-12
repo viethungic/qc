@@ -53,7 +53,7 @@ var TableEditable = function () {
             for (var i = 1; i <= totalItemPerLine; i++) {
                 oTable.fnUpdate(jqInputs[i-1].value, nRow, i, false);
             }
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, i, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, i, false);
             oTable.fnUpdate('<a class="delete" href=""></a>', nRow, i+1, false);
             oTable.fnDraw();
 
@@ -99,7 +99,7 @@ var TableEditable = function () {
             oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
             oTable.fnUpdate(jqInputs[8].value, nRow, 8, false);
             oTable.fnUpdate(jqInputs[9].value, nRow, 9, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 10, false);
+            oTable.fnUpdate('<a class="edit" href="">Sửa</a>', nRow, 10, false);
             oTable.fnDraw();
         }
 
@@ -205,7 +205,7 @@ var TableEditable = function () {
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i><!--THONG SO SAN PHAM-->
+                    <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> PHÂN CÔNG SẢN XUẤT</i>
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -229,14 +229,14 @@ var TableEditable = function () {
                             <table class="table table-hover">
 								<thead>
 								<tr>
-									<th> Khuôn</th>
-									<th>Nhân công</th>
+									<th>Mã số SP</th>
+									<th>Mã số CN</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr>
-									<td>2525</td>
-                                    <td>125</td>
+									<td>8130</td>
+                                    <td>651</td>
 								</tr>
                                 </tbody>
                             </table>
@@ -253,7 +253,7 @@ var TableEditable = function () {
                 <?php $n=$j=$k=$h=0; for ($i = 1; $i <= ceil(count($items)/$itemsPerLine); $i++) { ?>
                 <table class="table table-striped table-hover table-bordered" id="monitoring_table_<?php echo $i?>">
                     <thead>
-                    <tr style="background-color: #ffb848;">
+                    <tr style="background-color: #212121;">
                         <th>
                             <!--                Sua-->
                         </th>
@@ -280,17 +280,16 @@ var TableEditable = function () {
                     <tbody>
                         <tr>
                             <td>
-                                M
+                                Mã số máy
                             </td>
                             <?php while ($j < count($items)) {?>
                             <td>
                                 <?php echo $items[$j]['machineserialno'] ?>
-                                
                             </td>
                             <?php $j++; if($j%$itemsPerLine == 0) break;}?>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td>
@@ -300,19 +299,16 @@ var TableEditable = function () {
                         </tr>
                         <tr>
                             <td>
-                                MSK
+                                Mã số SP
                             </td>
                             <?php while ($k < count($items)) {?>
-                            <td>
+                            <td id="<?php echo $items[$k]['shapserialno'] ?>">
                                 <?php echo $items[$k]['shapserialno'] ?>
-                                <div id="<?php echo $items[$k]['shapserialno'] ?>">
-                                
-                                </div>
                             </td>
                             <?php $k++; if($k%$itemsPerLine == 0) break;}?>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td>
@@ -322,7 +318,7 @@ var TableEditable = function () {
                         </tr>
                         <tr>
                             <td>
-                                MSCN
+                                Mã số CN
                             </td>
                             <?php while ($h < count($items)) {?>
                             <td>
@@ -331,7 +327,7 @@ var TableEditable = function () {
                             <?php $h++; if($h%$itemsPerLine == 0) break;}?>
                             <td>
                                 <a class="edit" href="javascript:;">
-                                    Edit
+                                    Sửa
                                 </a>
                             </td>
                             <td>

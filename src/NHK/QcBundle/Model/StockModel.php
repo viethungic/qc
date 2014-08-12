@@ -16,8 +16,8 @@ class StockModel
                     SET T.workerno = '".$array['workerno']."',
                         T.fullname = '".$array['fullname']."',
                         T.sex = '".$array['sex']."',
-                        T.datecreated = '".date('Y-m-d')."',
-                        T.usercreated = 'Nam Pham'
+                        T.datecreated = '".date('Y-m-d H:i:s')."',
+                        T.usercreated = 'Hung Truong'
                 WHERE T.id = ".$array['id'];
         $cn->executeQuery($sql);
     }
