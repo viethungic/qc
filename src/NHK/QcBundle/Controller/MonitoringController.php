@@ -24,6 +24,7 @@ class MonitoringController extends Controller implements DomainObjectInterface
 
     public function indexAction(){
         $model = new MonitoringModel($this->getDoctrine()->getManager());
+        //var_dump($model->getAll());
         $arrayReturn = array('items'=>$model->getAll(), 'itemsPerLine'=>$this->itemsPerLine);
         return $this->render('NHKQcBundle:Monitoring:monitoring.html.php',$arrayReturn);
     }

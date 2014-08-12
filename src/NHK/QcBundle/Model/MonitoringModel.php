@@ -12,7 +12,13 @@ class MonitoringModel
     public function getAll(){
         $em = $this->_em;
         $cn = $em->getConnection();
-        $sql = "SELECT o.*, s.shapserialno, m.machineserialno  FROM qc_operation o INNER JOIN qc_machine m ON o.machineid = m.id INNER JOIN qc_shape s ON o.shapeid = s.id WHERE o.delif = 0 AND s.delif = 0 AND m.delif = 0";
+        $sql = "SELECT o.*, s.shapserialno, m.machineserialno  
+                FROM qc_operation o 
+                    INNER JOIN qc_machine m ON o.machineid = m.id 
+                    INNER JOIN qc_shape s ON o.shapeid = s.id 
+                WHERE o.delif = 0 
+                    AND s.delif = 0 
+                    AND m.delif = 0";
         $rs=$cn->fetchAll($sql);
         return $rs;
     }

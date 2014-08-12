@@ -18,6 +18,8 @@
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/bundles/qc/assets/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/bundles/qc/assets/plugins/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/bundles/qc/assets/plugins/data-tables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>/bundles/qc/assets/plugins/jquery.pulsate.min.js"></script>
+
 
 <script>
 var TableEditable = function () {
@@ -185,6 +187,27 @@ var TableEditable = function () {
         //main function to initiate the module
         init: function () {
             handleTable();
+        },
+        initPopup: function (){
+            $('#th-machine-0 , #th-machine-8, #th-machine-16,  #th-machine-10').pulsate({
+                color: "#E02222",
+                repeat: 5
+            });
+            setInterval(function () {
+                $('#th-machine-0 , #th-machine-8, #th-machine-16,  #th-machine-10').pulsate({
+                    color: "#E02222",
+                    repeat: 25
+                });
+            }, 10000);
+            
+            $('.mo-item').click(function(){
+                var valueThis = $(this).attr('data-id');
+                $('#title-mc').text($.trim($("#td-sn-item-"+valueThis).text()));
+                //alert($("#td-sn-item-"+valueThis).text());
+                $('#text-mc').text($.trim($("#td-sn-item-"+valueThis).text()));
+                $('#text-sp').text($.trim($(".masosanpham-"+valueThis).text()));
+                $('#text-cn').text($.trim($("#masocongnhan-"+valueThis).text()));
+            })
         }
 
     };
@@ -194,6 +217,7 @@ var TableEditable = function () {
 <script>
     jQuery(document).ready(function() {
         TableEditable.init();
+        TableEditable.initPopup();
         $(".col-sm-12").css("display","none");
     });
 </script>
@@ -218,25 +242,28 @@ var TableEditable = function () {
                     </a>
                 </div>
             </div>
+            <!-- Pop-up -->
             <div class="modal fade" id="small" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header blue">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title">Máy #</h4>
+							<h4 class="modal-title">Máy <i id="title-mc"></i></h4>
 						</div>
 						<div class="modal-body">
                             <table class="table table-hover">
 								<thead>
 								<tr>
+                                    <th>Mã số Machine</th>
 									<th>Mã số SP</th>
 									<th>Mã số CN</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr>
-									<td>8130</td>
-                                    <td>651</td>
+                                    <td><i id="text-mc"></i></td>
+									<td><i id="text-sp"></i></td>
+                                    <td><i id="text-cn"></i></td>
 								</tr>
                                 </tbody>
                             </table>
@@ -249,17 +276,18 @@ var TableEditable = function () {
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+            <!-- End Pop-up -->
             <div class="portlet-body">
                 <?php $n=$j=$k=$h=0; for ($i = 1; $i <= ceil(count($items)/$itemsPerLine); $i++) { ?>
                 <table class="table table-striped table-hover table-bordered" id="monitoring_table_<?php echo $i?>">
                     <thead>
-                    <tr style="background-color: #212121;">
+                    <tr style="background-color: #8080C0;">
                         <th>
                             <!--                Sua-->
                         </th>
                         <?php while ($n < count($items)) {?>
-                        <th>
-                            <a class="btn " data-toggle="modal" href="#small">
+                        <th id="th-machine-<?php echo $n?>">
+                            <a class="btn mo-item" style="color: whitesmoke;" data-id="<?php echo $n?>" data-toggle="modal" href="#small">
 								 <?php echo "No. ".$n?>
                                  <i class="fa fa-bell-o"></i>
             					<span class="badge">
@@ -283,7 +311,7 @@ var TableEditable = function () {
                                 Mã số máy
                             </td>
                             <?php while ($j < count($items)) {?>
-                            <td>
+                            <td id="td-sn-item-<?php echo $j;?>">
                                 <?php echo $items[$j]['machineserialno'] ?>
                             </td>
                             <?php $j++; if($j%$itemsPerLine == 0) break;}?>
@@ -302,7 +330,7 @@ var TableEditable = function () {
                                 Mã số SP
                             </td>
                             <?php while ($k < count($items)) {?>
-                            <td id="<?php echo $items[$k]['shapserialno'] ?>">
+                            <td class="masosanpham-<?php echo $k;?>" id="<?php echo $items[$k]['shapserialno'] ?>">
                                 <?php echo $items[$k]['shapserialno'] ?>
                             </td>
                             <?php $k++; if($k%$itemsPerLine == 0) break;}?>
@@ -321,7 +349,7 @@ var TableEditable = function () {
                                 Mã số CN
                             </td>
                             <?php while ($h < count($items)) {?>
-                            <td>
+                            <td id="masocongnhan-<?php echo $h?>">
                                 <?php echo $items[$h]['workerno'] ?>
                             </td>
                             <?php $h++; if($h%$itemsPerLine == 0) break;}?>
