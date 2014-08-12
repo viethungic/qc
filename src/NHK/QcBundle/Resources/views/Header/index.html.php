@@ -29,7 +29,7 @@
 				<ul class="dropdown-menu extended notification">
 					<li>
 						<p>
-							 You have 14 new notifications
+							 Thông báo từ hệ thống
 						</p>
 					</li>
 					<li>
@@ -39,7 +39,7 @@
 									<span class="label label-icon label-success">
 										<i class="fa fa-plus"></i>
 									</span>
-									 New user registered.
+									 Đăng kí mới user Thanh Nam
 									<span class="time">
 										 Just now
 									</span>
@@ -50,7 +50,7 @@
 									<span class="label label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
-									 Server #12 overloaded.
+									 Lỗi nhập sai mã số máy
 									<span class="time">
 										 15 mins
 									</span>
@@ -61,7 +61,7 @@
 									<span class="label label-icon label-warning">
 										<i class="fa fa-bell-o"></i>
 									</span>
-									 Server #2 not responding.
+									 Lỗi login
 									<span class="time">
 										 22 mins
 									</span>
@@ -72,7 +72,7 @@
 									<span class="label label-icon label-info">
 										<i class="fa fa-bullhorn"></i>
 									</span>
-									 Application error.
+									 Ứng dụng lỗi
 									<span class="time">
 										 40 mins
 									</span>
@@ -83,7 +83,7 @@
 									<span class="label label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
-									 Database overloaded 68%.
+									 Ứng dụng load chậm
 									<span class="time">
 										 2 hrs
 									</span>
@@ -94,42 +94,9 @@
 									<span class="label label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
-									 2 user IP blocked.
+									 Khóa 2 IP.
 									<span class="time">
 										 5 hrs
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="label label-icon label-warning">
-										<i class="fa fa-bell-o"></i>
-									</span>
-									 Storage Server #4 not responding.
-									<span class="time">
-										 45 mins
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="label label-icon label-info">
-										<i class="fa fa-bullhorn"></i>
-									</span>
-									 System Error.
-									<span class="time">
-										 55 mins
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="label label-icon label-danger">
-										<i class="fa fa-bolt"></i>
-									</span>
-									 Database overloaded 68%.
-									<span class="time">
-										 2 hrs
 									</span>
 								</a>
 							</li>
@@ -137,7 +104,7 @@
 					</li>
 					<li class="external">
 						<a href="#">
-							 See all notifications <i class="m-icon-swapright"></i>
+                            Xem tất cả <i class="m-icon-swapright"></i>
 						</a>
 					</li>
 				</ul>
@@ -154,7 +121,7 @@
 				<ul class="dropdown-menu extended inbox">
 					<li>
 						<p>
-							 You have 12 new messages
+							 Thông báo từ process
 						</p>
 					</li>
 					<li>
@@ -166,14 +133,14 @@
 									</span>
 									<span class="subject">
 										<span class="from">
-											 Lisa Wong
+											 Quyên Trần
 										</span>
 										<span class="time">
 											 Just Now
 										</span>
 									</span>
 									<span class="message">
-										 Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...
+										 Đổi ca với Ngân Huỳnh...
 									</span>
 								</a>
 							</li>
@@ -184,16 +151,16 @@
 									</span>
 									<span class="subject">
 										<span class="from">
-											 Richard Doe
+											 Huy Huỳnh
 										</span>
 										<span class="time">
 											 16 mins
 										</span>
 									</span>
 									<span class="message">
-										 Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+										 Hoàn thành đơn hàng 16...
 									</span>
-								</a>
+								</a>.
 							</li>
 							<li>
 								<a href="inbox.html?a=view">
@@ -202,50 +169,14 @@
 									</span>
 									<span class="subject">
 										<span class="from">
-											 Bob Nilson
+											 Thanh Đồng
 										</span>
 										<span class="time">
 											 2 hrs
 										</span>
 									</span>
 									<span class="message">
-										 Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh...
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="inbox.html?a=view">
-									<span class="photo">
-										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar2.jpg" alt=""/>
-									</span>
-									<span class="subject">
-										<span class="from">
-											 Lisa Wong
-										</span>
-										<span class="time">
-											 40 mins
-										</span>
-									</span>
-									<span class="message">
-										 Vivamus sed auctor 40% nibh congue nibh...
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="inbox.html?a=view">
-									<span class="photo">
-										<img src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar3.jpg" alt=""/>
-									</span>
-									<span class="subject">
-										<span class="from">
-											 Richard Doe
-										</span>
-										<span class="time">
-											 46 mins
-										</span>
-									</span>
-									<span class="message">
-										 Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+										 Hoàn thành test lò đâu máy 251...
 									</span>
 								</a>
 							</li>
@@ -253,7 +184,7 @@
 					</li>
 					<li class="external">
 						<a href="inbox.html">
-							 See all messages <i class="m-icon-swapright"></i>
+                            Xem tất cả <i class="m-icon-swapright"></i>
 						</a>
 					</li>
 				</ul>
@@ -270,7 +201,7 @@
 				<ul class="dropdown-menu extended tasks">
 					<li>
 						<p>
-							 You have 12 pending tasks
+							 Tình trạng công việc của bạn
 						</p>
 					</li>
 					<li>
@@ -279,7 +210,7 @@
 								<a href="#">
 									<span class="task">
 										<span class="desc">
-											 New release v1.2
+											 Đơn hàng #05
 										</span>
 										<span class="percent">
 											 30%
@@ -298,7 +229,7 @@
 								<a href="#">
 									<span class="task">
 										<span class="desc">
-											 Application deployment
+											 Máy #251
 										</span>
 										<span class="percent">
 											 65%
@@ -317,7 +248,7 @@
 								<a href="#">
 									<span class="task">
 										<span class="desc">
-											 Mobile app release
+											 Chánh phẩm #251
 										</span>
 										<span class="percent">
 											 98%
@@ -336,7 +267,7 @@
 								<a href="#">
 									<span class="task">
 										<span class="desc">
-											 Database migration
+											 Phế phẩm #251
 										</span>
 										<span class="percent">
 											 10%
@@ -355,7 +286,7 @@
 								<a href="#">
 									<span class="task">
 										<span class="desc">
-											 Web server upgrade
+											 Tỉ lệ phế phẩm/đơn hàng #251
 										</span>
 										<span class="percent">
 											 58%
@@ -370,49 +301,11 @@
 									</span>
 								</a>
 							</li>
-							<li>
-								<a href="#">
-									<span class="task">
-										<span class="desc">
-											 Mobile development
-										</span>
-										<span class="percent">
-											 85%
-										</span>
-									</span>
-									<span class="progress progress-striped">
-										<span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-											<span class="sr-only">
-												 85% Complete
-											</span>
-										</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="task">
-										<span class="desc">
-											 New UI release
-										</span>
-										<span class="percent">
-											 18%
-										</span>
-									</span>
-									<span class="progress progress-striped">
-										<span style="width: 18%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-											<span class="sr-only">
-												 18% Complete
-											</span>
-										</span>
-									</span>
-								</a>
-							</li>
 						</ul>
 					</li>
 					<li class="external">
 						<a href="#">
-							 See all tasks <i class="m-icon-swapright"></i>
+							 Xem tất cả <i class="m-icon-swapright"></i>
 						</a>
 					</li>
 				</ul>
@@ -423,24 +316,24 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<img alt="" src="<?php echo BASE_URL?>/bundles/qc/assets/img/avatar1_small.jpg"/>
 					<span class="username hidden-1024">
-						 Bob Nilson
+						 QC User
 					</span>
 					<i class="fa fa-angle-down"></i>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
 						<a href="extra_profile.html">
-							<i class="fa fa-user"></i> My Profile
+							<i class="fa fa-user"></i> Cá nhân
 						</a>
 					</li>
 					<li>
 						<a href="page_calendar.html">
-							<i class="fa fa-calendar"></i> My Calendar
+							<i class="fa fa-calendar"></i> Lịch
 						</a>
 					</li>
 					<li>
 						<a href="inbox.html">
-							<i class="fa fa-envelope"></i> My Inbox
+							<i class="fa fa-envelope"></i> Hộp thư
 							<span class="badge badge-danger">
 								 3
 							</span>
@@ -448,7 +341,7 @@
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-tasks"></i> My Tasks
+							<i class="fa fa-tasks"></i> Công việc
 							<span class="badge badge-success">
 								 7
 							</span>
@@ -458,17 +351,17 @@
 					</li>
 					<li>
 						<a href="javascript:;" id="trigger_fullscreen">
-							<i class="fa fa-arrows"></i> Full Screen
+							<i class="fa fa-arrows"></i> Toàn màn hình
 						</a>
 					</li>
 					<li>
 						<a href="extra_lock.html">
-							<i class="fa fa-lock"></i> Lock Screen
+							<i class="fa fa-lock"></i> Khóa màn hình
 						</a>
 					</li>
 					<li>
 						<a href="login.html">
-							<i class="fa fa-key"></i> Log Out
+							<i class="fa fa-key"></i> Đăng xuất
 						</a>
 					</li>
 				</ul>

@@ -295,6 +295,9 @@ var TableEditable = function () {
 									 Tên đăng nhập
 								</th>
 								<th>
+									 Họ tên
+								</th>
+								<th>
 									 Email
 								</th>
 								<th>
@@ -322,9 +325,12 @@ var TableEditable = function () {
 									 <?php echo $ul->getUsername();?>
 								</td>
 								<td>
+                                    Nguyễn Văn T
+								</td>
+								<td>
                                     <?php echo $ul->getEmail();?>
 								</td>
-								
+
 								<td class="center">
 									 <select class="select2me form-control" multiple="">
                                      <?php 
