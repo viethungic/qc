@@ -295,7 +295,7 @@ var TableEditable = function () {
 									 Tên đăng nhập
 								</th>
 								<th>
-									 Họ tên
+									 Email
 								</th>
 								<th>
 									 Vai trò
@@ -322,7 +322,7 @@ var TableEditable = function () {
 									 <?php echo $ul->getUsername();?>
 								</td>
 								<td>
-									 
+                                    <?php echo $ul->getEmail();?>
 								</td>
 								
 								<td class="center">
@@ -344,12 +344,12 @@ var TableEditable = function () {
 								</td>
 								<td>
 									<a class="edit" href="javascript:;">
-										 Edit
+										 Sửa
 									</a>
 								</td>
 								<td>
 									<a class="delete" href="javascript:;">
-										 Delete
+										 Xóa
 									</a>
 								</td>
 							</tr>
