@@ -342,82 +342,83 @@ var TableEditable2 = function () {
 <div class="col-md-12">
 <!-- BEGIN EXAMPLE TABLE PORTLET-->
 <div class="portlet box blue">
-<div class="portlet-title">
-    <div class="caption">
-        <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> KẾT QUẢ LÒ ĐẦU LÊN KHUÔN</i>
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit" STYLE="FONT-SIZE: 18PX"> KẾT QUẢ LÒ ĐẦU LÊN KHUÔN</i>
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="#portlet-config" data-toggle="modal" class="config">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
     </div>
-    <div class="tools">
-        <a href="javascript:;" class="collapse">
-        </a>
-        <a href="#portlet-config" data-toggle="modal" class="config">
-        </a>
-        <a href="javascript:;" class="reload">
-        </a>
-        <a href="javascript:;" class="remove">
-        </a>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+        </div>
+        <table class="table table-hover table-bordered" id="shape_release">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã số Máy</th>
+                <th>Mã số SP</th>
+                <th>Mã số CN</th>
+                <th>Giờ nhận</th>
+                <th>Giờ báo cáo</th>
+                <th>Kết quả</th>
+                <th>ID</th>
+                <th>Sửa</th>
+                <th style="display: none" class="cancel-col">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $i=0; foreach($items as $item): 
+                if(($i%2)==0) $trCls = 'active'; else $trCls = 'success'; ?>
+            <tr class="<?php echo $trCls;?>">
+                <td>
+                    <?php echo $item['id'] ?>
+                </td>
+                <td>
+                    <?php echo $item['shapserialno'] ?>
+                </td>
+                <td>
+                    <?php echo $item['machineserialno'] ?>
+                </td>
+                <td>
+                    <?php echo $item['workerno'] ?>
+                </td>
+                <td>
+                    <?php echo $item['gionhan'] ?>
+                </td>
+                <td>
+                    <?php echo $item['giobaocao'] ?>
+                </td>
+                <td>
+                    <?php echo $item['ketqua'] ?>
+                </td>
+                <td>
+                    <?php echo $item['id'] ?>
+                </td>
+                <td>
+                    <a class="edit" href="javascript:;">
+                        Sửa
+                    </a>
+                </td>
+                <td style="display: none" class="cancel-col">
+                    <a class="delete" href="javascript:;">
+    
+                    </a>
+                </td>
+            </tr>
+            <?php $i++; endforeach; ?>
+            </tbody>
+        </table>
     </div>
-</div>
-<div class="portlet-body">
-    <div class="table-toolbar">
-    </div>
-    <table class="table table-striped table-hover table-bordered" id="shape_release">
-        <thead>
-        <tr>
-            <th>STT</th>
-            <th>Mã số Máy</th>
-            <th>Mã số SP</th>
-            <th>Mã số CN</th>
-            <th>Giờ nhận</th>
-            <th>Giờ báo cáo</th>
-            <th>Kết quả</th>
-            <th>ID</th>
-            <th>Sửa</th>
-            <th style="display: none" class="cancel-col">
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach($items as $item): ?>
-        <tr>
-            <td>
-                <?php echo $item['id'] ?>
-            </td>
-            <td>
-                <?php echo $item['shapserialno'] ?>
-            </td>
-            <td>
-                <?php echo $item['machineserialno'] ?>
-            </td>
-            <td>
-                <?php echo $item['workerno'] ?>
-            </td>
-            <td>
-                <?php echo $item['gionhan'] ?>
-            </td>
-            <td>
-                <?php echo $item['giobaocao'] ?>
-            </td>
-            <td>
-                <?php echo $item['ketqua'] ?>
-            </td>
-            <td>
-                <?php echo $item['id'] ?>
-            </td>
-            <td>
-                <a class="edit" href="javascript:;">
-                    Sửa
-                </a>
-            </td>
-            <td style="display: none" class="cancel-col">
-                <a class="delete" href="javascript:;">
-
-                </a>
-            </td>
-        </tr>
-        <?php endforeach ?>
-        </tbody>
-    </table>
-</div>
 </div>
 <!-- END EXAMPLE TABLE PORTLET-->
 </div>
@@ -469,8 +470,8 @@ var TableEditable2 = function () {
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($items as $item): ?>
-                        <tr>
+                    <?php $i=0; foreach($items as $item):  if(($i%2)==0) $trCls = 'warning'; else $trCls = 'danger'; ?>
+                        <tr class="<?php echo $trCls ?>">
                             <td>
                                 <?php echo $item['id'] ?>
                             </td>
@@ -529,7 +530,7 @@ var TableEditable2 = function () {
                                 </a>
                             </td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php $i++; endforeach; ?>
                     </tbody>
                 </table>
             </div>
